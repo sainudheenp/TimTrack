@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=WakaTime
+Exec=/home/kali/Downloads/wakatime-linux-x86_64.AppImage
+StartupNotify=false
+Terminal=false
