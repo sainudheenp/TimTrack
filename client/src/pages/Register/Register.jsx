@@ -37,6 +37,8 @@ const Register = () => {
 
       localStorage.setItem("token", token);
       console.log(" signed User :", user);
+      console.log("UID :", user.uid);
+
       navigate("/");
     } catch (error) {
       console.log("Google Auth login Failed", error);
