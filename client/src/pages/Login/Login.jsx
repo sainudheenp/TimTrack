@@ -28,8 +28,17 @@ const Login = () => {
     }
   };
   return (
-    <div >
-      <h1>Login</h1>
+    <div className="">
+      <h2>Log in with </h2>
+      <div>
+        <button >
+        <img className="w-12"  src="https://cdn-icons-png.flaticon.com/512/720/720255.png" alt="Google" />
+        </button>
+        <button>
+        <img className="w-12"  src="https://cdn-icons-png.flaticon.com/512/731/731985.png" alt=""  />
+
+        </button>
+      </div>
       <input
         type="email"
         value={email}
