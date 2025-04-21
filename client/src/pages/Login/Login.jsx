@@ -32,26 +32,36 @@ const Login = () => {
       <h2>Log in with </h2>
       <div>
         <button >
-        <img className="w-12"  src="https://cdn-icons-png.flaticon.com/512/720/720255.png" alt="Google" />
+          <img className="w-12" src="https://cdn-icons-png.flaticon.com/512/720/720255.png" alt="Google" />
+          Google
         </button>
         <button>
-        <img className="w-12"  src="https://cdn-icons-png.flaticon.com/512/731/731985.png" alt=""  />
-
+          Apple
+          <img className="w-12" src="https://cdn-icons-png.flaticon.com/512/731/731985.png" alt="" />
         </button>
       </div>
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Email"
-      />
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="Password"
-      />
-      <button onClick={handleLogin}>Log In</button>
+
+      <p><span>or</span></p>
+      <i class="fa fa-envelope" aria-hidden="true"></i>  
+          <form action="#">
+        <div>
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email"
+        />
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+        />
+        <button onClick={handleLogin}>Log In</button>
+        </div>
+      </form>
+
+
     </div>
   );
 };
