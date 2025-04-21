@@ -12,21 +12,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
-  const handleFormRegister = async () => {
-    try {
-      const userCred = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      const token = await userCred.user.getIdToken();
-      localStorage.setItem("token", token);
-      console.log(" signed User :", userCred);
-      navigate("/");
-    } catch (error) {
-      console.log("User Not Created!");
-    }
-  };
+  
 
   const handleGoogleLogin = async () => {
     const provider = new GoogleAuthProvider();
