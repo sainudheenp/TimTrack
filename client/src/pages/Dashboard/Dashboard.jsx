@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 const Dashboard = () => {
   return <div>dashboard
-    <Link to='/login' > login</Link>
+    <Link to='/login' className="text-amber-300 " > login</Link>
   </div>;
 };
 

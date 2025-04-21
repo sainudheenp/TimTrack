@@ -49,33 +49,37 @@ const Login = () => {
           <span className="relative z-10 bg-white px-2 text-amber-700">or</span>
         </p> */}
 
-<p className="relative my-4 text-center before:content-[''] before:absolute before:left-0 before:top-1/2 before:h-[1px] before:w-full before:bg-[#bfb3f2]">
-  <span className="relative z-10 bg-white px-4 text-sm text-gray-600">or</span>
-</p>
+        <p className="relative my-1 text-center before:content-[''] before:absolute before:left-0 before:top-1/2 before:h-[1px] before:w-full before:bg-[#bfb3f2] ">
+          <span className="relative z-10 bg-white px-4 text-xl text-gray-600 ">or</span>
+        </p>
 
-        <form action="#">
-          <div>
-            <input
+        <form action="#" className="mt-4">
+          <div className="h-[44px] mb-5 relative">
+            <input className="peer w-full border-1 rounded-md p-3 px-10 border-gray-400 outline-0 focus:border-gray-700 focus:border-1 focus:shadow-stone-700 "
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Email"
             />
-            <i className="fa fa-envelope" aria-hidden="true"></i>
+            <span className="absolute top-[70%] left-[.9rem] pointer-events-none translate-y-[-70%]  text-gray-600 text-lg peer-focus:text-gray-800">
+              <i className="fa fa-envelope" aria-hidden="true"></i>
+            </span>
           </div>
 
-          <div>
+          <div className="h-[44px] mb-5 relative">
 
-            <input
+            <input className="peer w-full border-1 rounded-md p-3 px-10 border-gray-400 outline-0  focus:border-gray-700 focus:border-1 focus:shadow-stone-700  "
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
             />
-            <i className="fa fa-lock"></i>
+            <span className="absolute top-[70%] left-[.9rem] pointer-events-none translate-y-[-70%] text-gray-600 text-lg peer-focus:text-gray-800 ">
+              <i className="fa fa-lock"></i>
+            </span>
           </div>
           <a href="#" className="forgot">Forgot Password?</a>
-          <button onClick={handleLogin}>Log In</button>
+          <button className="w-full mt-3 h-[44px] border-2 cursor-pointer" onClick={handleLogin}>Log In</button>
         </form>
         <p>Don&apos;t have an account?<a href="#">SignUp now</a></p>
 
