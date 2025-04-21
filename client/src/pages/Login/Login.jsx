@@ -28,38 +28,50 @@ const Login = () => {
     }
   };
   return (
-    <div className="">
-      <h2>Log in with </h2>
-      <div>
-        <button >
-          <img className="w-12" src="https://cdn-icons-png.flaticon.com/512/720/720255.png" alt="Google" />
-          Google
-        </button>
-        <button>
-          Apple
-          <img className="w-12" src="https://cdn-icons-png.flaticon.com/512/731/731985.png" alt="" />
-        </button>
-      </div>
+    <div className="flex  justify-center items-center bg-amber-300 h-screen font-sans ">
 
-      <p><span>or</span></p>
-      <i class="fa fa-envelope" aria-hidden="true"></i>  
-          <form action="#">
-        <div>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
-        />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-        />
-        <button onClick={handleLogin}>Log In</button>
+
+      <div className="flex flex-col  justify-center items-center bg-white p-10 pt-6 pb-6 rounded-lg shadow-lg max-w-96">
+        <h2 className="font-bold text-2xl mb-6">Log in with </h2>
+        <div className="flex gap-3 pb-4 w-full justify-evenly font-normal">
+          <button className="flex items-center gap-2 cursor-pointer border-2 border-gray-300 rounded-lg p-2 px-4 hover:border-gray-500 hover:bg-gray-200 transition-colors duration-120 " >
+            <img className="w-8" src="https://cdn-icons-png.flaticon.com/512/720/720255.png" alt="Google" />
+            Google
+          </button>
+          <button className="flex items-center gap-2 cursor-pointer border-2 border-gray-300 rounded-lg p-2 px-4 hover:border-gray-500 hover:bg-gray-200 transition-colors duration-120 ">
+            <img className="w-8" src="https://cdn-icons-png.flaticon.com/512/731/731985.png" alt="" />
+            Apple
+          </button>
         </div>
-      </form>
+
+        <p className="my-1 text-center"><span>or</span></p>
+        <form action="#">
+          <div>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
+            />
+            <i className="fa fa-envelope" aria-hidden="true"></i>
+          </div>
+
+          <div>
+
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
+            />
+            <i className="fa fa-lock"></i>
+          </div>
+          <a href="#" className="forgot">Forgot Password?</a>
+          <button onClick={handleLogin}>Log In</button>
+        </form>
+        <p>Don&apos;t have an account?<a href="#">SignUp now</a></p>
+
+      </div>
 
 
     </div>
