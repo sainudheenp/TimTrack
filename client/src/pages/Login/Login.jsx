@@ -44,7 +44,15 @@ const Login = () => {
           </button>
         </div>
 
-        <p className="my-1 text-center"><span>or</span></p>
+
+        {/* <p className="my-1 text-center relative  after:absolute  after:content-['']   after:left-0 after:top-1/2 after:w-full after:h-[1px] after:bg-black">
+          <span className="relative z-10 bg-white px-2 text-amber-700">or</span>
+        </p> */}
+
+<p className="relative my-4 text-center before:content-[''] before:absolute before:left-0 before:top-1/2 before:h-[1px] before:w-full before:bg-[#bfb3f2]">
+  <span className="relative z-10 bg-white px-4 text-sm text-gray-600">or</span>
+</p>
+
         <form action="#">
           <div>
             <input
