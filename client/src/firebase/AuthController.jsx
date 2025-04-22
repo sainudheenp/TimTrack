@@ -1,4 +1,4 @@
-import { auth } from "./firebase.jsx";
+import { auth ,browserPopupRedirectResolver} from "./firebase.jsx";
 import {
     createUserWithEmailAndPassword,
     GoogleAuthProvider,
@@ -9,7 +9,7 @@ import {
 export const registerWithProvider = async ({ Pprovider }) => {
     console.log("AM HERE")
     const provider = new Pprovider()
-    const result = await signInWithPopup(auth, provider);
+    const result = await signInWithPopup(auth, provider,browserPopupRedirectResolver);
     const token = await result.user.getIdToken();
     localStorage.setItem("token", token);
     console.log("Sign in User:", result);
