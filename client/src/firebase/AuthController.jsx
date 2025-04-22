@@ -1,9 +1,10 @@
-import { auth ,browserPopupRedirectResolver} from "./firebase.jsx";
+import { auth } from "./firebase.jsx";
 import {
     createUserWithEmailAndPassword,
     GoogleAuthProvider,
     GithubAuthProvider,
     signInWithPopup,
+    browserPopupRedirectResolver
 } from "firebase/auth";
 
 export const registerWithProvider = async ({ Pprovider }) => {
