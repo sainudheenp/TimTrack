@@ -1,13 +1,26 @@
 import React from 'react'
 import { registerWithProvider } from '../services/AuthController'
 //test with authcontroller
+import { useNavigate } from 'react-router-dom'
+import { userStore } from '../store/userStore'
 
 const SocialLogin = ({ text, img, provider }) => {
-
+  const navigate = useNavigate();
   const handleProviderLogin = async (provider) => {
-    console.log("provider", provider)
-    // registerWithProvider(provider)
-    registerWithProvider({ Pprovider: provider }) 
+    try {
+      const { user, token } = await registerWithProvider({ Pprovider: provider });
+      if (user && token) {
+        console.log("User signed in successfully:", user);
+        navigate("/");
+        // setUser(user);
+        // setToken(token);
+        userStore.getState().setUser(user);
+        userStore.getState().setToken(token);
+      }
+    } catch (error) {
+      console.log("Error in SocialLogin", error);
+
+    }
 
   }
 
