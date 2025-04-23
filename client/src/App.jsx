@@ -7,17 +7,24 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login/Login";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Register from "./pages/Register/Register";
+import { useStateContext } from "./context/ContextProvider";
+import Sidebar from "./components/Sidebar";
 function App() {
   const [count, setCount] = useState(0);
-
+  const { activeMenu } = useStateContext()
   return (
     <div>
       <Router>
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-        </Routes>
+
+        {activeMenu ? <div> <Sidebar /> </div> : <div className="w-0">SideBar</div>}
+
+        <div>
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+          </Routes>
+        </div>
       </Router>
     </div>
   );
