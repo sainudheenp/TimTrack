@@ -11,21 +11,28 @@ import { useStateContext } from "./context/ContextProvider";
 import Sidebar from "./components/Sidebar";
 import Timesheet from "./pages/Analys/Timesheet";
 import Todo from "./pages/Todo/Todo";
+import Navbar from "./components/Navbar";
 function App() {
   const [count, setCount] = useState(0);
   const { activeMenu } = useStateContext()
   return (
-    <div>
+    <div className="flex">
       <Router>
 
-        {activeMenu ? <div> <Sidebar /> </div> : <div className="w-0">SideBar</div>}
+        {activeMenu ? <div className="w-72">
+          <Sidebar /> </div> : <div className="w-0">SideBar</div>
+        }
 
-        <div>
+
+        <div className={`dark:bg-main bg-main-bg min-h-screen w-full ${activeMenu ? "md:ml-12" : "flex-2"
+          }`}>
+          <div><Navbar /> </div>
+
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/timesheet" element={<Timesheet />} />
             <Route path="/todo" element={<Todo />} />
-            
+
 
 
             {/* just for test */}
