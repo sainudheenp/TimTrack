@@ -9,6 +9,8 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import Register from "./pages/Register/Register";
 import { useStateContext } from "./context/ContextProvider";
 import Sidebar from "./components/Sidebar";
+import Timesheet from "./pages/Analys/Timesheet";
+import Todo from "./pages/Todo/Todo";
 function App() {
   const [count, setCount] = useState(0);
   const { activeMenu } = useStateContext()
@@ -21,6 +23,12 @@ function App() {
         <div>
           <Routes>
             <Route path="/" element={<Dashboard />} />
+            <Route path="/timesheet" element={<Timesheet />} />
+            <Route path="/todo" element={<Todo />} />
+            
+
+
+            {/* just for test */}
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
           </Routes>
