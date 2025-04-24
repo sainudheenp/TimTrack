@@ -6,7 +6,11 @@ import SideNavLink from './SideNavLink'
 const Sidebar = () => {
     const { activeMenu, setActiveMenu, screenSize } = useStateContext()
 
-    const handleSideBarClose = () => { }
+    const handleSideBarClose = () => {
+        if (activeMenu && screenSize <= 900) {
+            setActiveMenu(false)
+        }
+    }
 
     const activeLink =
         "flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-gray=900 font-bold text-md m-2";
@@ -19,9 +23,9 @@ const Sidebar = () => {
             {activeMenu && (
                 <>
                     <div className='flex items-center gap-3 ml-3 mt-4 text-xl font-extrabold tracking-light dark:text-white text-slate-900 justify-between '>
-    
-                          <div className='flex items-center gap-2 '>
-                          <svg className='h-[32px]'
+
+                        <div className='flex items-center gap-2 '>
+                            <svg className='h-[32px]'
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="-5.32 -5.32 38.64 38.64"
                                 fill="#ffff"
@@ -37,10 +41,10 @@ const Sidebar = () => {
                                 </g>
                             </svg>
                             TimTrack
-                          </div>
-                    
+                        </div>
 
-                        <button className='cursor-pointer'><i className="fas fa-times"></i></button>
+
+                        <button className='cursor-pointer' onClick={() => setActiveMenu((prev) => !prev)}><i className="fas fa-times"></i></button>
                     </div>
 
                     <div className='mt-10'>

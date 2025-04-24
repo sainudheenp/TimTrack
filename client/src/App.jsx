@@ -16,29 +16,31 @@ function App() {
   const [count, setCount] = useState(0);
   const { activeMenu } = useStateContext()
   return (
-    <div className="flex">
+    <div >
       <Router>
+        <div className="flex relative dark:bg-main-dark-bg">
 
-        {activeMenu ? <div className="w-72">
-          <Sidebar /> </div> : <div className="w-0">SideBar</div>
-        }
-
-
-        <div className={`dark:bg-main bg-main-bg min-h-screen w-full ${activeMenu ? "md:ml-12" : "flex-2"
-          }`}>
-          <div><Navbar /> </div>
-
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/timesheet" element={<Timesheet />} />
-            <Route path="/todo" element={<Todo />} />
+          {activeMenu ? <div className=" w-72 fixed dark:bg-secondery-dark-bg   bg-white overflow-auto h-screen" style={{ zIndex: "100" }}> 
+            <Sidebar /> </div> : <div className="w-0 overflow-hidden">hiddenSideBar</div>
+          }
 
 
+          <div className={`dark:bg-main bg-main-bg min-h-screen w-full ${activeMenu ? "md:ml-72" : "flex-2"
+            }`}>
+            <div><Navbar /> </div>
 
-            {/* just for test */}
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-          </Routes>
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/timesheet" element={<Timesheet />} />
+              <Route path="/todo" element={<Todo />} />
+
+
+
+              {/* just for test */}
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+            </Routes>
+          </div>
         </div>
       </Router>
     </div>
