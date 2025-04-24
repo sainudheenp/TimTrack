@@ -16,9 +16,9 @@ const Dashboard = () => {
 
 
     <div className="flex justify-between gap-5 m-12">
-      <WeekCard />
-      <WeekCard />
-      <WeekCard />
+      <WeekCard title={"Weekly Activity"} progress={"0%"} />
+      <WeekCard title={"Worked This Week"} progress={"38:00:03"} />
+      <WeekCard title={"Projects Worked"} progress={"02"} />
 
     </div>
 
