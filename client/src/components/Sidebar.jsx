@@ -15,7 +15,7 @@ const Sidebar = () => {
 
 
     return (
-        <div>
+        <div className='ml-3 h-screen md:overflow-hidden overflow-auto md:hover:overflow-auto pb-10'>
             {activeMenu && (
                 <>
                     <div className='flex items-center gap-3 ml-3 mt-4 text-xl font-extrabold tracking-light dark:text-white text-slate-900 justify-between '>
@@ -40,7 +40,7 @@ const Sidebar = () => {
                           </div>
                     
 
-                        <button><i className="fas fa-times"></i></button>
+                        <button className='cursor-pointer'><i className="fas fa-times"></i></button>
                     </div>
 
                     <div className='mt-10'>
