@@ -9,11 +9,13 @@ const WeekCard = ({ title, progress, icon }) => {
         <span className='text-xl font-medium '>{title}</span>
         <span><i className="fa-solid fa-ellipsis-vertical"></i></span>
       </div>
-      <div className='flex justify-between text-4xl font-medium mt-20'>
-        <span className='' >{progress}</span>
-        {/* <TbArrowsSplit2 className='rotate-90 text-5xl' /> */}
-        {/* <RxCounterClockwiseClock /> */}
-        <FaRegFolder />
+      <div className='flex justify-between items-center mt-20'>
+        <span className='text-4xl font-medium' >{progress}</span>
+       <div className='bg-amber-100 rounded-2xl text-amber-400 font-bold p-3 text-5xl'>
+         {/* <TbArrowsSplit2 className='rotate-90 text-5xl' /> */}
+         <RxCounterClockwiseClock />
+        {/* <FaRegFolder /> */}
+       </div>
       </div>
     </div>
   )
