@@ -20,12 +20,12 @@ function App() {
       <Router>
         <div className="flex relative dark:bg-main-dark-bg">
 
-          {activeMenu ? <div className=" w-72 fixed dark:bg-secondery-dark-bg   bg-white overflow-auto h-screen" style={{ zIndex: "100" }}> 
+          {activeMenu ? <div className=" w-72 fixed dark:bg-secondery-dark-bg   bg-white overflow-auto h-screen" style={{ zIndex: "100" }}>
             <Sidebar /> </div> : <div className="w-0 overflow-hidden">hiddenSideBar</div>
           }
 
 
-          <div className={`dark:bg-main bg-main-bg min-h-screen w-full ${activeMenu ? "md:ml-72" : "flex-2"
+          <div className={`dark:bg-main bg-main-bg min-h-screen w-full  ${activeMenu ? "md:ml-72" : "flex-2"
             }`}>
             <div><Navbar /> </div>
 
