@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { userStore } from '../../store/userStore'
 import Day from "../../components/Day";
 import StartStopControls from "../../components/StartStopControls";
+import WeekCard from "../../components/WeekCard";
 const Dashboard = () => {
 
   const user = userStore((state) => state.user);
@@ -11,6 +12,14 @@ const Dashboard = () => {
     <div className="flex justify-between m-12">
       <Day />
       <StartStopControls />
+    </div>
+
+
+    <div className="flex justify-between gap-5 m-12">
+      <WeekCard />
+      <WeekCard />
+      <WeekCard />
+
     </div>
 
     dashboard
