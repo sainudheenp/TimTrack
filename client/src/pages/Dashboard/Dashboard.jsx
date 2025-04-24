@@ -4,22 +4,37 @@ import { userStore } from '../../store/userStore'
 import Day from "../../components/Day";
 import StartStopControls from "../../components/StartStopControls";
 import WeekCard from "../../components/WeekCard";
+
+import { TbArrowsSplit2 } from "react-icons/tb";
+import { RxCounterClockwiseClock } from "react-icons/rx";
+import { FaRegFolder } from "react-icons/fa";
 const Dashboard = () => {
 
   const user = userStore((state) => state.user);
   console.log("Zustand-user", user ? user : "no user");
-  return <div className="bg-gray-200 rounded-md p-12">  
+  return <div className="bg-gray-200 rounded-md p-12">
     <div className="flex justify-between  ">
       <Day />
       <StartStopControls />
     </div>
 
 
-    <div className="flex justify-between gap-6 mt-12">
-      <WeekCard title={"Weekly Activity"} progress={"0%"} />
-      <WeekCard title={"Worked This Week"} progress={"38:00:03"} />
-      <WeekCard title={"Projects Worked"} progress={"02"} />
-
+    <div className="flex flex-col md:flex-row justify-between gap-6 mt-12 ">
+      <WeekCard
+        title="Weekly Activity"
+        progress="0%"
+        icon={<TbArrowsSplit2 className="rotate-90 text-5xl" />}
+      />
+      <WeekCard
+        title="Worked This Week"
+        progress="38:00:03"
+        icon={<RxCounterClockwiseClock className="text-5xl" />}
+      />
+      <WeekCard
+        title="Projects Worked"
+        progress="02"
+        icon={<FaRegFolder className="text-5xl" />}
+      />
     </div>
 
     dashboard
