@@ -8,14 +8,14 @@ const Dashboard = () => {
 
   const user = userStore((state) => state.user);
   console.log("Zustand-user", user ? user : "no user");
-  return <div>
-    <div className="flex justify-between m-12">
+  return <div className="bg-gray-200 rounded-md p-12">  
+    <div className="flex justify-between  ">
       <Day />
       <StartStopControls />
     </div>
 
 
-    <div className="flex justify-between gap-5 m-12">
+    <div className="flex justify-between gap-6 mt-12">
       <WeekCard title={"Weekly Activity"} progress={"0%"} />
       <WeekCard title={"Worked This Week"} progress={"38:00:03"} />
       <WeekCard title={"Projects Worked"} progress={"02"} />

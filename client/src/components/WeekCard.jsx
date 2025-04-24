@@ -4,7 +4,7 @@ import { RxCounterClockwiseClock } from "react-icons/rx";
 import { FaRegFolder } from "react-icons/fa";
 const WeekCard = ({ title, progress, icon }) => {
   return (
-    <div className='w-full bg-red-400 rounded-lg p-6 flex flex-col justify-between'>
+    <div className='w-full bg-white rounded-lg p-6 flex flex-col justify-between'>
       <div className='flex justify-between'>
         <span className='text-xl font-medium '>{title}</span>
         <span><i className="fa-solid fa-ellipsis-vertical"></i></span>
