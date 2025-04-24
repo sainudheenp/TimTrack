@@ -12,36 +12,29 @@ import Sidebar from "./components/Sidebar";
 import Timesheet from "./pages/Analys/Timesheet";
 import Todo from "./pages/Todo/Todo";
 import Navbar from "./components/Navbar";
+import AuthLayout from "./Layouts/AuthLayout";
+import MainLayout from "./Layouts/MainLayout";
 function App() {
   const [count, setCount] = useState(0);
   const { activeMenu } = useStateContext()
   return (
     <div >
       <Router>
-        <div className="flex relative dark:bg-main-dark-bg">
+      <Routes>
+              {/* Auth Routes */}
+              <Route element={<AuthLayout />}>
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+              </Route>
+              {/* Page Routes */}
 
-          {activeMenu ? <div className=" w-72 fixed dark:bg-secondery-dark-bg   bg-white overflow-auto h-screen" style={{ zIndex: "100" }}>
-            <Sidebar /> </div> : <div className="w-0 overflow-hidden">hiddenSideBar</div>
-          }
+              <Route element={<MainLayout />}>
 
-
-          <div className={`dark:bg-main bg-main-bg min-h-screen w-full  ${activeMenu ? "md:ml-72" : "flex-2"
-            }`}>
-            <div><Navbar /> </div>
-
-            <Routes>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/timesheet" element={<Timesheet />} />
-              <Route path="/todo" element={<Todo />} />
-
-
-
-              {/* just for test */}
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/timesheet" element={<Timesheet />} />
+                <Route path="/todo" element={<Todo />} />
+              </Route>
             </Routes>
-          </div>
-        </div>
       </Router>
     </div>
   );
