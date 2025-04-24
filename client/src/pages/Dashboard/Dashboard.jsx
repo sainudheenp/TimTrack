@@ -8,6 +8,9 @@ import WeekCard from "../../components/WeekCard";
 import { TbArrowsSplit2 } from "react-icons/tb";
 import { RxCounterClockwiseClock } from "react-icons/rx";
 import { FaRegFolder } from "react-icons/fa";
+import TaskCard from "../../components/TaskCard";
+import RecentActivity from "../../components/RecentActivity";
+import ProjectsCard from "../../components/ProjectsCard";
 const Dashboard = () => {
 
   const user = userStore((state) => state.user);
@@ -36,6 +39,14 @@ const Dashboard = () => {
         icon={<FaRegFolder className="text-5xl" />}
       />
     </div>
+
+    <div className="mt-12 grid grid-cols-2 gap-6">
+      <TaskCard TaskName={"Recent Activity"} taskDiv={<RecentActivity />} />
+      <TaskCard TaskName={"Projects"} taskDiv={<ProjectsCard />} />
+      <TaskCard />
+      <TaskCard />
+    </div>
+
 
     dashboard
     <Link to='/login' className="text-amber-300 " > login</Link>
