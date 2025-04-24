@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
 import { useStateContext } from '../context/ContextProvider'
+// import { userStore } from .store/userStore'
+import { userStore } from '../store/userStore'
 
 const NavButton = ({ title, customFunc, icon, color, dotcolor }) => {
   return <button type='button' onClick={customFunc} style={{ color }} className='relative text-xl rounded-full p-3 hover:bg-light-gray' >
@@ -10,7 +12,7 @@ const NavButton = ({ title, customFunc, icon, color, dotcolor }) => {
 
 
 const Navbar = () => {
-
+  const user = userStore((state) => state.user);
   const { activeMenu, setActiveMenu, isClicked, handleClick, screenSize, setScreenSize } = useStateContext()
   useEffect(() => {
     const handleResize = () => setScreenSize(window.innerWidth)
@@ -39,10 +41,11 @@ const Navbar = () => {
 
         <NavButton title={"h"} icon={<i className="fas fa-bell"></i>} customFunc={() => handleClick("notification")} color={'black'} dotcolor={'blue'} />
         <div id='userCard' className='flex items-center gap-2 ' onClick={() => handleClick("userProfile")} >
-          <img src='https://lh3.googleusercontent.com/a/ACg8ocLwgwtkQYUaRUSkXg4akz8tk_s2IsZ9p_qqCwzsjNy2n1i_pw=s96-c' alt='UserProfile' className='rounded-full w-8 h-8' />
+          <img src={user?.photoURL|| "https://cdn-icons-png.flaticon.com/512/4140/4140037.png"} alt='UserProfile' className='rounded-full w-8 h-8' />
           <p>
-            <span className="text-gray-400 text-14">Hi,</span>
-            <span className="text-gray-400 font-bold ml-1 text-14">Zain</span>
+            {/* <span className="text-gray-400 text-14">Hi,</span> */}
+
+            <span className="text-gray-400 font-bold ml-1 text-14">{user?.displayName || "Guest"}</span>
           </p>
           {/* <i className="fas fa-dropdown"></i> */}
           <svg class="-mr-1 size-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">

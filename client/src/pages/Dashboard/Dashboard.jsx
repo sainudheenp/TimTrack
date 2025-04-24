@@ -12,7 +12,7 @@ const Dashboard = () => {
 
   const user = userStore((state) => state.user);
   console.log("Zustand-user", user ? user : "no user");
-  return <div className="bg-gray-200 rounded-md p-12">
+  return <div className="bg-gray-200 rounded-md p-8 md:p-12">
     <div className="flex flex-col gap-5 justify-between md:flex-row md:gap-0 ">
       <Day />
       <StartStopControls />

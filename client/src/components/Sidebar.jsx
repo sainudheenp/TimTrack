@@ -12,10 +12,10 @@ const Sidebar = () => {
         }
     }
 
-    const activeLink =
-        "flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-gray=900 font-bold text-md m-2";
-    const normalLink =
-        "flex items-center gap-5 pl-4 pt-3 pb-2.5  rounded-lg text-md text-gray-700 dark:text-gray-200 dark:hover:text-black hover:bg-light-gray m-2";
+    // const activeLink =
+    //     "flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-gray=900 font-bold text-md m-2 bg-black ";
+    // const normalLink =
+    //     "flex items-center gap-5 pl-4 pt-3 pb-2.5  rounded-lg text-md text-gray-700 dark:text-gray-200 dark:hover:text-black hover:bg-light-gray m-2";
 
 
     return (
@@ -24,7 +24,7 @@ const Sidebar = () => {
                 <>
                     <div className='flex items-center gap-3 ml-3 mt-4 text-xl font-extrabold tracking-light dark:text-white text-slate-900 justify-between '>
 
-                        <div className='flex items-center gap-2 '>
+                        <div className='flex items-center gap-2  dark:text-black'>
                             <svg className='h-[32px]'
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="-5.32 -5.32 38.64 38.64"
@@ -44,7 +44,7 @@ const Sidebar = () => {
                         </div>
 
 
-                        <button className='cursor-pointer mr-5' onClick={() => setActiveMenu((prev) => !prev)}><i className="fas fa-times"></i></button>
+                        <button className='cursor-pointer mr-5 dark:text-black' onClick={() => setActiveMenu((prev) => !prev)}><i className="fas fa-times"></i></button>
                     </div>
 
                     <div className='mt-10'>
