@@ -44,7 +44,7 @@ const Sidebar = () => {
                         </div>
 
 
-                        <button className='cursor-pointer mr-5 dark:text-black' onClick={() => setActiveMenu((prev) => !prev)}><i className="fas fa-times"></i></button>
+                        <button className='cursor-pointer mr-5 dark:text-black md:hidden' onClick={() => setActiveMenu((prev) => !prev)}><i className="fas fa-times"></i></button>
                     </div>
 
                     <div className='mt-10'>

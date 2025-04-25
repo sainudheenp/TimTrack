@@ -11,6 +11,8 @@ import { FaRegFolder } from "react-icons/fa";
 import TaskCard from "../../components/TaskCard";
 import RecentActivity from "../../components/RecentActivity";
 import ProjectsCard from "../../components/ProjectsCard";
+import MembersCard from "../../components/MembersCard";
+import TodoCard from "../../components/TodoCard";
 const Dashboard = () => {
 
   const user = userStore((state) => state.user);
@@ -43,8 +45,8 @@ const Dashboard = () => {
     <div className="mt-12 grid grid-cols-2 gap-6">
       <TaskCard TaskName={"Recent Activity"} taskDiv={<RecentActivity />} />
       <TaskCard TaskName={"Projects"} taskDiv={<ProjectsCard />} />
-      <TaskCard TaskName={"Members"} />
-      <TaskCard />
+      <TaskCard TaskName={"Members"} taskDiv={<MembersCard />} />
+      <TaskCard TaskName={"To Do"} taskDiv={<TodoCard />} />
     </div>
 
 
