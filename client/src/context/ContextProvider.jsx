@@ -15,13 +15,16 @@ export const ContextProvider = ({ children }) => {
         setIsClicked({ ...initialState, [clicked]: true })
     }
 
-    const [isRunning, setIsRunning] = useState(false)
+    const [isShowing, setIsShowing] = useState(false)
     const [isCreatingProject, setIsCreatingProject] = useState(false)
+    const [isRunning, setIsRunning] = useState(false)
 
 
     return (
         <StateContext.Provider value={{
-            activeMenu, setActiveMenu, isClicked, setIsClicked, screenSize, setScreenSize, handleClick ,isRunning,setIsRunning,isCreatingProject, setIsCreatingProject
+            activeMenu, setActiveMenu, isClicked, setIsClicked, screenSize, setScreenSize, handleClick ,
+            isShowing,setIsShowing,isCreatingProject, setIsCreatingProject,
+            isRunning, setIsRunning
         }}>
             {children}
         </StateContext.Provider>

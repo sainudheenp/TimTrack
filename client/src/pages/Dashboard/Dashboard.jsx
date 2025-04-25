@@ -18,7 +18,7 @@ import { useStateContext } from "../../context/ContextProvider";
 import TimerCard from "../../components/TimerCard";
 const Dashboard = () => {
 
-  const { isRunning, setIsRunning } = useStateContext()
+  const { isShowing, setIsShowing } = useStateContext()
   const user = userStore((state) => state.user);
   console.log("Zustand-user", user ? user : "no user");
   return <div className="bg-gray-200 rounded-md p-8 md:p-12">
@@ -27,7 +27,7 @@ const Dashboard = () => {
       <StartStopControls />
     </div>
 
-    {isRunning && (
+    {isShowing && (
       <TimerCard />
     )}
 
