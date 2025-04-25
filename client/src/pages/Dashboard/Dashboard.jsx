@@ -42,7 +42,7 @@ const Dashboard = () => {
       />
     </div>
 
-    <div className="mt-12 grid grid-cols-2 gap-6">
+    <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
       <TaskCard TaskName={"Recent Activity"} taskDiv={<RecentActivity />} />
       <TaskCard TaskName={"Projects"} taskDiv={<ProjectsCard />} />
       <TaskCard TaskName={"Members"} taskDiv={<MembersCard />}  Headers={["Member Info","Today","This Week"]}/>
