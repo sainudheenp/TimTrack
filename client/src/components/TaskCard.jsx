@@ -7,7 +7,7 @@ const TaskCard = ({ taskDiv, TaskName, Headers = null }) => {
                 <span className='text-xl font-medium mb-4 '>{TaskName}</span>
                 <span><i className="fa-solid fa-ellipsis-vertical"></i></span>
             </div>
-            {Headers && <div className='grid grid-cols-2  font-bold text-gray-500 pl-3 pr-3'>
+            {Headers && <div className='hidden md:grid  grid-cols-2  font-bold text-gray-500 pl-3 pr-3'>
                 <span>{Headers[0]}</span>
                 <div className='grid grid-cols-2'>
                     <span>{Headers[1]}</span>

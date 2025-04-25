@@ -10,7 +10,7 @@ const ProgressTile = ({ name, time, value }) => {
         <h4 className="truncate min-w-0">{name}</h4> {/* Prevent text overflow */}
       </div>
       
-      <div className='flex justify-between items-center gap-3 w-full md:mt-0 md:pl-4'>
+      <div className='flex justify-between items-center gap-3 w-3/4 md:w-11/20 md:mt-0 md:pl-4'>
         <span className="whitespace-nowrap">{time}</span> {/* Prevent time from wrapping */}
         <div className="flex-1 min-w-0"> {/* Allow progress bar to grow */}
           <LinearProgress
