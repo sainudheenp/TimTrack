@@ -13,8 +13,12 @@ import RecentActivity from "../../components/RecentActivity";
 import ProjectsCard from "../../components/ProjectsCard";
 import MembersCard from "../../components/MembersCard";
 import TodoCard from "../../components/TodoCard";
+
+import { useStateContext } from "../../context/ContextProvider";
+import TimerCard from "../../components/TimerCard";
 const Dashboard = () => {
 
+  const { isRunning, setIsRunning } = useStateContext()
   const user = userStore((state) => state.user);
   console.log("Zustand-user", user ? user : "no user");
   return <div className="bg-gray-200 rounded-md p-8 md:p-12">
@@ -23,6 +27,9 @@ const Dashboard = () => {
       <StartStopControls />
     </div>
 
+    {isRunning && (
+      <TimerCard />
+    )}
 
     <div className="flex flex-col md:flex-row justify-between gap-6 mt-12 ">
       <WeekCard
@@ -46,11 +53,11 @@ const Dashboard = () => {
       <TaskCard TaskName={"Recent Activity"} taskDiv={<RecentActivity />} />
       <TaskCard TaskName={"Projects"} taskDiv={<ProjectsCard />} />
       <TaskCard TaskName={"Members"} taskDiv={<MembersCard />} />
-      <TaskCard TaskName={"To Do"} taskDiv={<TodoCard />}  Headers={["Todo","Time"]} />
+      <TaskCard TaskName={"To Do"} taskDiv={<TodoCard />} Headers={["Todo", "Time"]} />
     </div>
 
 
-   
+
     <Link to='/login' className="text-amber-300 " > login</Link>
     <p>Hey {user?.displayName || 'Guest'}</p>
   </div>;
