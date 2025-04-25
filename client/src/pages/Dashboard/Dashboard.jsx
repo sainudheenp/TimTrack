@@ -50,7 +50,7 @@ const Dashboard = () => {
     </div>
 
 
-    dashboard
+   
     <Link to='/login' className="text-amber-300 " > login</Link>
     <p>Hey {user?.displayName || 'Guest'}</p>
   </div>;
