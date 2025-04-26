@@ -8,7 +8,9 @@ app.use(express.urlencoded({ extended: true, limit: "10kb" }));
 
 //routes
 // app.use('/',)
-app.use('/',)
+// app.use('/',)
+
+
 
 
 

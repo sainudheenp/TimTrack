@@ -9,8 +9,7 @@ const StartStopControls = () => {
                 <button onClick={() => { setIsShowing(true) ,setIsRunning((prev)=>!prev) }} type="button" className="cursor-pointer h-15 w-15 rounded-2xl bg-amber-300 hover:bg-amber-900 flex items-center justify-center text-2xl">
                     {isRunning ? <i className="fa-solid fa-pause "></i> : <i className="fa-solid fa-play "></i>}
                 </button>
-            </div>
-            
+            </div>            
         </div>
     )
 }
