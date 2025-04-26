@@ -1,5 +1,5 @@
 const express = require("express");
-
+require('./config/firebase')
 const app = express();
 
 app.use(express.json());
