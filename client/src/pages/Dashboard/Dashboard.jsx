@@ -17,7 +17,7 @@ import TodoCard from "../../components/TodoCard";
 import { useStateContext } from "../../context/ContextProvider";
 import TimerCard from "../../components/TimerCard";
 const Dashboard = () => {
-
+console.log("dashboard reder")
   const { isShowing, setIsShowing } = useStateContext()
   const user = userStore((state) => state.user);
   console.log("Zustand-user", user ? user : "no user");

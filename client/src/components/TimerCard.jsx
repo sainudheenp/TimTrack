@@ -3,6 +3,8 @@ import { useStateContext } from '../context/ContextProvider'
 
 
 const TimerCard = () => {
+    console.log("TimeCard render")
+
     const { isShowing, setIsShowing, isCreatingProject, setIsCreatingProject, isRunning, 
         setIsRunning ,duration,handleControll,intervalId} = useStateContext()
     // const [duration, setDuration] = useState(0)
