@@ -16,8 +16,7 @@ const activitiesSchema = new mongoose.Schema({
         ref: 'Project'
     },
     userId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        type:String,
         required: true
     }
 }
