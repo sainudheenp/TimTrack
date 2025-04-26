@@ -3,16 +3,19 @@ import { useStateContext } from '../context/ContextProvider'
 
 
 const TimerCard = () => {
-    const [duration, setDuration] = useState(0)
+    const { isShowing, setIsShowing, isCreatingProject, setIsCreatingProject, isRunning, 
+        setIsRunning ,duration,handleControll,intervalId} = useStateContext()
+    // const [duration, setDuration] = useState(0)
+    // const [intervalId, setIntervalId] = useState(null)
 
-    useEffect(() => {
-        const id = setInterval(() => {
-            setDuration(prev => prev + 1)
-            console.log("added")
-        }, 1000)
+    // useEffect(() => {
+    //     const id = setInterval(() => {
+    //         setDuration(prev => prev + 1)
+    //         console.log("added")
+    //     }, 1000)
 
-        return () => clearInterval(id)
-    }, [])
+    //     return () => clearInterval(id)
+    // }, [])
 
     const hours = Math.floor(duration / 3600)
     const minutes = Math.floor((duration % 3600) / 60)
@@ -20,14 +23,34 @@ const TimerCard = () => {
 
     const displayTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
 
+    //  const handleControll = () => {
+    //     if (isRunning) {
+    //         clearInterval(intervalId)
+    //         setIntervalId(null)
+    //     } else {
+    //         const id = setInterval(() => {
+    //             setDuration(prev => prev + 1)
+    //         }, 1000)
+    //         setIntervalId(id)
+    //     }
+    //     setIsRunning(prev => !prev)
+    // }
+    useEffect(() => {
+        // Clean up on component unmount
+        return () => {
+            if (intervalId) {
+                clearInterval(intervalId)
+            }
+        }
+    }, [intervalId])
 
-    const { isShowing, setIsShowing, isCreatingProject, setIsCreatingProject, isRunning, setIsRunning } = useStateContext()
     return (
         <div className="bg-white rounded-2xl shadow-md p-6 w-full max-w-md mx-auto mt-8 space-y-6">
 
             <div className="text-center">
                 <h2 className="text-5xl font-bold text-gray-800 font-mono">{displayTime}</h2>
-                <button className="text-sm mt-2 cursor-pointer mt-8 w-20 h-10 bg-gray-400  text-lg text-black rounded-sm font-semibold" onClick={() => { setIsRunning((prev) => !prev) }}>{isRunning ? "Stop" : "Start"}                     {isRunning ? <i className="fa-solid fa-pause "></i> : <i className="fa-solid fa-play "></i>}                </button>
+                <button className="text-sm mt-2 cursor-pointer mt-8 w-20 h-10 bg-gray-400  text-lg text-black rounded-sm font-semibold" 
+                onClick={() => { handleControll() }}>{isRunning ? "Stop" : "Start"}                     {isRunning ? <i className="fa-solid fa-pause "></i> : <i className="fa-solid fa-play "></i>}                </button>
             </div>
 
             <div>
