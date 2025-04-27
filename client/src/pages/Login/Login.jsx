@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import SocialLogin from "../../components/SocialLogin";
 import InputField from "../../components/InputField";
 import { GoogleAuthProvider, GithubAuthProvider } from "firebase/auth";
+import Cookies from 'js-cookie';
+
 
 const Login = () => {
   const navigate = useNavigate();
@@ -16,6 +18,13 @@ const Login = () => {
       const userCred = await signInWithEmailAndPassword(auth, email, password);
       const token = await userCred.user.getIdToken();
       localStorage.setItem("token", token);
+
+      Cookies.set('token', token, {
+        expires: 1, 
+        // secure: true, 
+        // sameSite: 'Strict', 
+      });
+
       console.log("Sign in User:", userCred);
       console.log("UID :", userCred.user.uid);
       navigate("/");

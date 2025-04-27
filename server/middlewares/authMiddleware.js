@@ -3,7 +3,7 @@ const { auth } = require('../config/firebase')
 
 const validateToken = async (req, res, next) => {
     try {
-        const token = req.headers.authorization?.split('Bearer')[1]
+        const token = req.cookies.token
         if (!token) {
             return res.status(401).json({
                 success: false,

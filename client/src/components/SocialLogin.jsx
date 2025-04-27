@@ -3,6 +3,7 @@ import { registerWithProvider } from '../services/AuthController'
 //test with authcontroller
 import { useNavigate } from 'react-router-dom'
 import { userStore } from '../store/userStore'
+import Cookies from 'js-cookie';
 
 const SocialLogin = ({ text, img, provider }) => {
   const navigate = useNavigate();
@@ -11,7 +12,15 @@ const SocialLogin = ({ text, img, provider }) => {
       const { user, token } = await registerWithProvider({ Pprovider: provider });
       if (user && token) {
         console.log("User signed in successfully:", user);
+
+        Cookies.set('token', token, {
+          expires: 1,
+          // secure: true, 
+          // sameSite: 'Strict', 
+        });
+
         navigate("/");
+
         // setUser(user);
         // setToken(token);
         userStore.getState().setUser(user);
