@@ -12,11 +12,11 @@ const activitiesSchema = new mongoose.Schema({
         required: true
     },
     projectName: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Project'
+        type: String
+        // ref: 'Project'
     },
     userId: {
-        type:String,
+        type: String,
         required: true
     }
 }
