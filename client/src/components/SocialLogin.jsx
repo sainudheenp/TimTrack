@@ -15,8 +15,8 @@ const SocialLogin = ({ text, img, provider }) => {
 
         Cookies.set('token', token, {
           expires: 1,
-          // secure: true, 
-          // sameSite: 'None', 
+          secure: false, 
+          sameSite: 'none', 
         });
 
         navigate("/");

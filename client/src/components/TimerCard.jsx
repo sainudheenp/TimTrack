@@ -1,7 +1,6 @@
 import { React, useEffect, useState } from 'react'
 import { useStateContext } from '../context/ContextProvider'
 
-
 const TimerCard = () => {
     console.log("TimeCard render")
 
@@ -22,15 +21,16 @@ const TimerCard = () => {
         const data = {
             activityName: activityName,
             projectName: isCreatingProject ? newProjectName : projectName,
-            duration: duration,
+            activityDuration: duration,
         }
 
         try {
-            const response = await fetch('https://timtrack.onrender.com/api/v1/activity', {
+            const response = await fetch('http://127.0.0.1:3000/api/v1/activity', {
                 method: 'POST',
                 credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.token}`,
                 },
                 body: JSON.stringify(data),
             })

@@ -3,7 +3,7 @@ const Activity = require('../models/activitiesModel')
 exports.createActivity = (req, res) => {
     try {
         if (req.user.uid) {
-            const newActivity = Activity.create(req.body, ...req.user.uid)
+            const newActivity = Activity.create({...req.body, userId:req.user.uid})
             res.status(201).json({
                 status: 'Success',
                 data: {
