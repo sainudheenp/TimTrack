@@ -14,13 +14,13 @@ const TimerCard = () => {
 
     const displayTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
 
-    const [acitvityName, setAcitvityName] = useState('')
+    const [activityName, setActivityName] = useState('')
     const [projectName, setProjectName] = useState('')
     const [newProjectName, setNewProjectName] = useState('')
 
     const handleSave = async () => {
         const data = {
-            activityName: acitvityName,
+            activityName: activityName,
             projectName: isCreatingProject ? newProjectName : projectName,
             duration: duration,
         }
@@ -28,16 +28,18 @@ const TimerCard = () => {
         try {
             const response = await fetch('https://timtrack.onrender.com/api/v1/activity', {
                 method: 'POST',
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(data),
-                  credentials: 'include'
             })
             const result = await response.json()
+
             if (response.ok) {
                 console.log('Activity saved successfully:', result)
-            } else {
+            }
+            else {
                 console.error('Error saving activity:', result)
             }
         } catch (error) {
@@ -72,7 +74,7 @@ const TimerCard = () => {
                     placeholder="e.g. Writing code..."
                     className="w-full p-3 border rounded-lg focus:outline-none focus:ring- focus:ring-amber-300"
 
-                    onChange={(e) => { setAcitvityName(e.target.value) }}
+                    onChange={(e) => { setActivityName(e.target.value) }}
                 />
             </div>
 
@@ -109,7 +111,7 @@ const TimerCard = () => {
                 <button className="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-700">
                     Discard
                 </button>
-                <button className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white" onClick={ handleSave} >
+                <button className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white" onClick={handleSave} >
                     Save
                 </button>
             </div>

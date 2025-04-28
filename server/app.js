@@ -10,7 +10,6 @@ app.use(cookieParser())
 
 app.use(cors({ origin: true, credentials: true }));
 
-
 //routes
 app.use('/api/v1/activity', activityRoutes)
 

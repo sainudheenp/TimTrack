@@ -2,13 +2,16 @@ const { auth } = require('../config/firebase')
 
 
 const validateToken = async (req, res, next) => {
+    console.log("appjs cookie",req.cookies.token);
+
     try {
-        const token = req.cookies.token
+        const token = req.cookies
         if (!token) {
             return res.status(401).json({
                 success: false,
-                message: "Auth token missing"
-            }).send("/login")
+                message: "Auth token missing",
+                redirect:'/login'
+            })
         }
 
         const decodedToken = await auth().verifyIdToken(token)

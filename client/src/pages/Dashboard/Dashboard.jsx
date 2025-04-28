@@ -28,7 +28,10 @@ console.log("dashboard reder")
     </div>
 
     {isShowing && (
-      <TimerCard />
+      <div  >
+
+        <TimerCard />
+      </div>
     )}
 
     <div className="flex flex-col md:flex-row justify-between gap-6 mt-12 ">
