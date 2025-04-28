@@ -18,6 +18,8 @@ const SocialLogin = ({ text, img, provider }) => {
           secure: false, 
           sameSite: 'none', 
         });
+        localStorage.setItem("token", token);
+        localStorage.setItem('user',user)
 
         navigate("/");
 

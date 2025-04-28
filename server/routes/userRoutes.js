@@ -1,12 +1,11 @@
 const express = require('express');
-const activityController = require("../controllers/activityControllers")
+const userController = require("../controllers/userControllers")
 const { validateToken } = require('../middlewares/authMiddleware')
 
 const router = express.Router()
 
 router.route("/")
-    .post(validateToken,activityController.createActivity)
-    .get(activityController.getAllActivity)
+    .get(validateToken,userController.getMe)
 
 module.exports = router
 

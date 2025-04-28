@@ -1,12 +1,30 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Sidebar from "../components/Sidebar"
 import Navbar from "../components/Navbar"
 import { useStateContext } from '../context/ContextProvider'
 import { Outlet } from "react-router-dom";
+const API_BASE = import.meta.env.VITE_API_URL
 
 
 const MainLayout = () => {
     const { activeMenu } = useStateContext()
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            try {
+                const res = await fetch(`${API_BASE}/api/v1/me`, {
+                    method: 'GET',
+
+                })
+                            // userStore.getState().setUser(user);
+                
+            } catch (error) {
+
+            }
+        }
+    })
+
+
     return (
         <div className="flex relative dark:bg-main-dark-bg">
 

@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from 'react'
 import { useStateContext } from '../context/ContextProvider'
-
+const API_BASE = import.meta.env.VITE_API_URL
 const TimerCard = () => {
     console.log("TimeCard render")
 
@@ -25,7 +25,7 @@ const TimerCard = () => {
         }
 
         try {
-            const response = await fetch('http://127.0.0.1:3000/api/v1/activity', {
+            const response = await fetch(`${API_BASE}/api/v1/activity`, {
                 method: 'POST',
                 credentials: 'include',
                 headers: {
@@ -37,6 +37,7 @@ const TimerCard = () => {
             const result = await response.json()
 
             if (response.ok) {
+                window.alert("Activity Added")
                 console.log('Activity saved successfully:', result)
             }
             else {

@@ -1,9 +1,6 @@
 import { create } from 'zustand';
 
-// const userBearStore = create((set) => ({
-//     isUserValid: false,
-//     setIsUserValid: (args) => set({ isUserValid: args })
-// }))
+
 
  export const userStore = create((set) => ({
     isUserValid: false,
@@ -12,4 +9,11 @@ import { create } from 'zustand';
     setUser: (args) => set({ user: args }),
     token: null,
     setToken: (args) => set({ token: args }),
+
+    //clear
+    clearUser:()=>{
+        set({user:null})
+        // clear localStorage token from here
+    }
+
 }))
