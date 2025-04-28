@@ -2,17 +2,22 @@ import React, { useEffect } from 'react'
 import Sidebar from "../components/Sidebar"
 import Navbar from "../components/Navbar"
 import { useStateContext } from '../context/ContextProvider'
-import { Outlet } from "react-router-dom";
+import { useNavigate, Outlet } from "react-router-dom";
 const API_BASE = import.meta.env.VITE_API_URL
 import { userStore } from '../store/userStore'
-
-
+import { auth } from '../services/firebase';
 const MainLayout = () => {
     const { activeMenu } = useStateContext()
+    const navigate =useNavigate()
 
     useEffect(() => {
+
+        if (!localStorage.getItem('token')) {
+            navigate('/login')
+        }
+
         const fetchUser = async () => {
-            
+
             try {
                 const res = await fetch(`${API_BASE}/api/v1/user`, {
                     method: 'GET',
