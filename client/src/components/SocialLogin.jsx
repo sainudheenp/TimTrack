@@ -25,7 +25,7 @@ const SocialLogin = ({ text, img, provider }) => {
 
         // setUser(user);
         // setToken(token);
-        userStore.getState().setUser(user);
+        // userStore.getState().setUser(user);
         userStore.getState().setToken(token);
       }
     } catch (error) {

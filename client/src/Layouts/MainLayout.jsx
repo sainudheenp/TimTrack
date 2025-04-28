@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar"
 import { useStateContext } from '../context/ContextProvider'
 import { Outlet } from "react-router-dom";
 const API_BASE = import.meta.env.VITE_API_URL
+import { userStore } from '../store/userStore'
 
 
 const MainLayout = () => {
@@ -11,18 +12,28 @@ const MainLayout = () => {
 
     useEffect(() => {
         const fetchUser = async () => {
+            
             try {
-                const res = await fetch(`${API_BASE}/api/v1/me`, {
+                const res = await fetch(`${API_BASE}/api/v1/user`, {
                     method: 'GET',
-
+                    credentials: 'include',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.token}`,
+                    }
                 })
-                            // userStore.getState().setUser(user);
-                
+                if (res.ok) {
+                    const result = await res.json()
+                    userStore.getState().setUser(result.user);
+                } else {
+                    console.log('User not authenticated Or Token Expired');
+                }
             } catch (error) {
-
+                console.log('GetME fetch', error)
             }
         }
-    })
+        fetchUser()
+    }, [])
 
 
     return (
