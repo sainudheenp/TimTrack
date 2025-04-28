@@ -5,7 +5,7 @@ const validateToken = async (req, res, next) => {
     console.log("appjs cookie",req.cookies.token);
 
     try {
-        const token = req.cookies
+        const token = req.cookies.token
         if (!token) {
             return res.status(401).json({
                 success: false,
