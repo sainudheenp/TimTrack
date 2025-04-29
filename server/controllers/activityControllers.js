@@ -1,31 +1,42 @@
-    const Activity = require('../models/activitiesModel')
-    const factory = require('./handlerFactory')
+const Activity = require('../models/activitiesModel')
+const factory = require('./handlerFactory')
+const catchAsync = require('../utils/catchAsync')
 
-    exports.createActivity = (req, res) => {
-        try {
-            if (req.user.uid) {
-                const newActivity = Activity.create({ ...req.body, userId: req.user.uid })
-                res.status(201).json({
-                    status: 'Success',
-                    data: {
-                        newActivity
-                    }
-                })
-            }
-        } catch (error) {
-            console.log("Activity Create Error", error)
-            res.status(400).json({
-                status: 'Failed',
-                message: error
-            })
+
+exports.createActivity = catchAsync(async (req, res, next) => {
+    const newActivity = await Activity.create({
+        ...req.body,
+        userId: req.user.uid
+    });
+
+    res.status(201).json({
+        status: 'Success',
+        data: {
+            newActivity
         }
+    });
+});
+
+exports.getWeeklyActivity = catchAsync(
+    async (req, res, next) => {
+        const data = await Activity.aggregate([
+            {
+                $match: { userId: req.user.uid }
+            },
+            {
+                $group: {
+                    project: "$projectName",
+                    totalTime: { $sum: "activityDuration" }
+                }
+            }
+
+        ])
+
+        res.status(200).json({
+            status: "success",
+            data,
+        });
     }
+)
 
-    // exports.getAllActivity = (req, res) => {
-    //     res.status(200).json({
-    //         status: "Success",
-    //         message: "Hey am Working"
-    //     })
-    // }
-
-    exports.getAllActivity = factory.getAll(Activity)
+exports.getAllActivity = factory.getAll(Activity)

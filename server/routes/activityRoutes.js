@@ -5,8 +5,11 @@ const { validateToken } = require('../middlewares/authMiddleware')
 const router = express.Router()
 
 router.route("/")
-    .post(validateToken,activityController.createActivity)
-    .get(validateToken,activityController.getAllActivity)
+    .post(validateToken, activityController.createActivity)
+    .get(validateToken, activityController.getAllActivity)
+
+router.route("/weekStatus/")
+    .get(validateToken, activityController.getWeeklyActivity)
 
 module.exports = router
 
