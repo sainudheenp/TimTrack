@@ -43,7 +43,7 @@ const Navbar = () => {
 
         <NavButton title={"h"} icon={<i className="fas fa-bell"></i>} customFunc={() => handleClick("notification")} color={'black'} dotcolor={'blue'} />
         <div id='userCard' className='flex items-center gap-2 ' onClick={() => handleClick("userProfile")} >
-          <img src={user?.picture|| "https://cdn-icons-png.flaticon.com/512/4140/4140037.png"} alt='UserProfile' className='rounded-full w-8 h-8' />
+          <img src={user?.picture|| "https://cdn-icons-png.flaticon.com/512/4140/4140037.png"} alt='avatar' className='rounded-full w-8 h-8' />
           <p>
             {/* <span className="text-gray-400 text-14">Hi,</span> */}
 

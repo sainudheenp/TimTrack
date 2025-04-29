@@ -6,15 +6,33 @@ import { useNavigate, Outlet } from "react-router-dom";
 const API_BASE = import.meta.env.VITE_API_URL
 import { userStore } from '../store/userStore'
 import { auth } from '../services/firebase';
+import { onIdTokenChanged } from 'firebase/auth';
 const MainLayout = () => {
     const { activeMenu } = useStateContext()
-    const navigate =useNavigate()
+    const navigate = useNavigate()
 
     useEffect(() => {
 
         if (!localStorage.getItem('token')) {
             navigate('/login')
         }
+
+
+        //token refresh
+        const unsubscribe = onIdTokenChanged(auth, async (user) => {
+            if (user) {
+                const token = await user.getIdToken()
+                localStorage.setItem('token', token)
+                console.log('Token refreshed:', token)
+            }else{
+                console.log("no user signd in ,please login")
+                localStorage.clear()
+            }
+        })
+
+
+
+
 
         const fetchUser = async () => {
 
