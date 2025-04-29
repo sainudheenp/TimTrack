@@ -8,7 +8,7 @@ import { userStore } from '../store/userStore'
 import { auth } from '../services/firebase';
 import { onIdTokenChanged } from 'firebase/auth';
 
-import { getUserProfile } from '../api/userServices';
+import { getUserProfile } from '../api/apiServices';
 
 
 const MainLayout = () => {
