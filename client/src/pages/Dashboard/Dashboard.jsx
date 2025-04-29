@@ -14,13 +14,26 @@ import ProjectsCard from "../../components/ProjectsCard";
 import MembersCard from "../../components/MembersCard";
 import TodoCard from "../../components/TodoCard";
 
+import useWeeklyStats from "../../hooks/useWeeklyStats";
+
+
 import { useStateContext } from "../../context/ContextProvider";
 import TimerCard from "../../components/TimerCard";
+
+
+
+
 const Dashboard = () => {
-console.log("dashboard reder")
+
+
+  console.log("dashboard reder")
   const { isShowing, setIsShowing } = useStateContext()
   const user = userStore((state) => state.user);
   console.log("Zustand-user", user ? user : "no user");
+
+  const { WeekAvg, TotalTime, ProjectsCount } = useWeeklyStats();
+
+
   return <div className="bg-gray-200 rounded-md p-8 md:p-12">
     <div className="flex flex-col gap-5 justify-between md:flex-row md:gap-0 ">
       <Day />
@@ -36,18 +49,18 @@ console.log("dashboard reder")
 
     <div className="flex flex-col md:flex-row justify-between gap-6 mt-12 ">
       <WeekCard
-        title="Weekly Activity"
-        progress="0%"
+        title="Daily Average "
+        progress={WeekAvg }
         icon={<TbArrowsSplit2 className="rotate-90 text-5xl" />}
       />
       <WeekCard
         title="Worked This Week"
-        progress="38:00:03"
+        progress={TotalTime}
         icon={<RxCounterClockwiseClock className="text-5xl" />}
       />
       <WeekCard
         title="Projects Worked"
-        progress="02"
+        progress={ProjectsCount}
         icon={<FaRegFolder className="text-5xl" />}
       />
     </div>
