@@ -7,6 +7,10 @@ const API_BASE = import.meta.env.VITE_API_URL
 import { userStore } from '../store/userStore'
 import { auth } from '../services/firebase';
 import { onIdTokenChanged } from 'firebase/auth';
+
+import { getUserProfile } from '../api/userServices';
+
+
 const MainLayout = () => {
     const { activeMenu } = useStateContext()
     const navigate = useNavigate()
@@ -24,9 +28,11 @@ const MainLayout = () => {
                 const token = await user.getIdToken()
                 localStorage.setItem('token', token)
                 console.log('Token refreshed:', token)
-            }else{
+            } else {
                 console.log("no user signd in ,please login")
                 localStorage.clear()
+                navigate('/login')
+
             }
         })
 
@@ -37,25 +43,40 @@ const MainLayout = () => {
         const fetchUser = async () => {
 
             try {
-                const res = await fetch(`${API_BASE}/api/v1/user`, {
-                    method: 'GET',
-                    credentials: 'include',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${localStorage.token}`,
-                    }
-                })
-                if (res.ok) {
-                    const result = await res.json()
-                    userStore.getState().setUser(result.user);
-                } else {
-                    console.log('User not authenticated Or Token Expired');
-                }
+                // const res = await fetch(`${API_BASE}/api/v1/user`, {
+                //     method: 'GET',
+                //     credentials: 'include',
+                //     headers: {
+                //         'Content-Type': 'application/json',
+                //         'Authorization': `Bearer ${localStorage.token}`,
+                //     }
+                // })
+                // if (res.ok) {
+                //     const result = await res.json()
+                //     userStore.getState().setUser(result.user);
+                // } else {
+                //     console.log('User not authenticated Or Token Expired');
+                // }
+
+
+                const res = await getUserProfile()
+                userStore.getState().setUser(res.user);
+
+
             } catch (error) {
                 console.log('GetME fetch', error)
             }
         }
+
+
+
+
+
+
+
+
         fetchUser()
+        return () => unsubscribe()
     }, [])
 
 
