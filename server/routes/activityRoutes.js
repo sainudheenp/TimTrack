@@ -6,7 +6,7 @@ const router = express.Router()
 
 router.route("/")
     .post(validateToken,activityController.createActivity)
-    .get(activityController.getAllActivity)
+    .get(validateToken,activityController.getAllActivity)
 
 module.exports = router
 
