@@ -18,25 +18,30 @@ exports.createActivity = catchAsync(async (req, res, next) => {
 });
 
 exports.getWeeklyActivity = catchAsync(
+    
     async (req, res, next) => {
-        const data = await Activity.aggregate([
-            {
-                $match: { userId: req.user.uid }
-            },
-            {
-                $group: {
-                    project: "$projectName",
-                    totalTime: { $sum: "activityDuration" }
-                }
+
+
+    const oneWeekAgo = new Date();
+    oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+    const data = await Activity.aggregate([
+        {
+            $match: { userId: req.user.uid,createdAt:{$gte:oneWeekAgo} }
+        },
+        {
+            $group: {
+                _id: "$projectName",
+                totalTime: { $sum: "$activityDuration"}
             }
+        }
 
-        ])
+    ])
 
-        res.status(200).json({
-            status: "success",
-            data,
-        });
-    }
+    res.status(200).json({
+        status: "success",
+        data,
+    });
+}
 )
 
 exports.getAllActivity = factory.getAll(Activity)
