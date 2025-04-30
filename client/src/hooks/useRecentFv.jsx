@@ -13,6 +13,6 @@ export default function setRecentActivites(){
             setActivities(data.data.data)
         }
         fetchData()
-    }, [activities])
+    }, [])
     return {activities}
 }

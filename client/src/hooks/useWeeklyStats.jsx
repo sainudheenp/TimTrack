@@ -4,7 +4,7 @@ import { getWeeklStats } from '../api/apiServices';
 
 
 
-const formatTime = (totalSeconds) => {
+export const formatTime = (totalSeconds) => {
     const hours = Math.floor(totalSeconds / 3600);
     const minutes = Math.floor((totalSeconds % 3600) / 60);
     const seconds = totalSeconds % 60;
@@ -18,28 +18,28 @@ const formatTime = (totalSeconds) => {
 
 export default function getWeekyStats() {
     const [weekly, setWeekly] = useState({
-        WeekAvg: 0,
+        WeekAvg: "00:00:00",
         TotalTime: "00:00:00",
         ProjectsCount: 0,
-        
+        weekData: []
     })
 
     useEffect(() => {
         const fetchStats = async () => {
-           
+
 
             const data = await getWeeklStats()
             const weeklyTotal = data.data.reduce((acc, proj) => acc + proj.totalTime, 0)
             const WeekAvg = Math.round(weeklyTotal / 7)
 
-            // console.log("WEK TOTAL",weeklyTotal)
+            console.log("WEK TOTAL", data)
 
             setWeekly({
                 TotalTime: formatTime(weeklyTotal),
                 ProjectsCount: data.data.length,
-                WeekAvg: formatTime(WeekAvg)
+                WeekAvg: formatTime(WeekAvg),
+                weekData: data.data
             })
-            // console.log("WEEK STATE :", weekly)
 
 
         }
@@ -47,6 +47,8 @@ export default function getWeekyStats() {
 
     }, [])
 
+
+  
     return weekly
 
 }
