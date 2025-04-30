@@ -43,22 +43,7 @@ const MainLayout = () => {
         const fetchUser = async () => {
 
             try {
-                // const res = await fetch(`${API_BASE}/api/v1/user`, {
-                //     method: 'GET',
-                //     credentials: 'include',
-                //     headers: {
-                //         'Content-Type': 'application/json',
-                //         'Authorization': `Bearer ${localStorage.token}`,
-                //     }
-                // })
-                // if (res.ok) {
-                //     const result = await res.json()
-                //     userStore.getState().setUser(result.user);
-                // } else {
-                //     console.log('User not authenticated Or Token Expired');
-                // }
-
-
+            
                 const res = await getUserProfile()
                 userStore.getState().setUser(res.user);
 

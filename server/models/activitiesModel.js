@@ -13,7 +13,6 @@ const activitiesSchema = new mongoose.Schema({
     },
     projectName: {
         type: String
-        // ref: 'Project'
     },
     userId: {
         type: String,

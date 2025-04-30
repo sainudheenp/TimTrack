@@ -49,10 +49,9 @@ const Sidebar = () => {
 
                     <div className='mt-10'>
                         <SideNavLink name={"Dashboard"} icon={"fas fa-th-list"} path={'/'} />
+                        <SideNavLink name={"Analysis"} icon={"fa-solid fa-chart-simple"} path={'/analysis'} />
                         <SideNavLink name={"Todo"} icon={"fas fa-tasks"} path={'/todo'} />
-                        <SideNavLink name={"Test"} icon={"fas fa-th-list"} path={'/s'} />
                         <SideNavLink name={"Vsl"} icon={"fas fa-tasks"} path={'/a'} />
-
                     </div>
                 </>
             )}
