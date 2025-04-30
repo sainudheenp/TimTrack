@@ -14,6 +14,7 @@ import Navbar from "./components/Navbar";
 import AuthLayout from "./Layouts/AuthLayout";
 import MainLayout from "./Layouts/MainLayout";
 import Analysis from "./pages/Analysis/Analysis";
+import Team from "./pages/Team/Team";
 function App() {
   const [count, setCount] = useState(0);
   const { activeMenu } = useStateContext()
@@ -34,6 +35,7 @@ function App() {
             {/* <Route path="/timesheet" element={<Timesheet />} /> */}
             <Route path="/todo" element={<Todo />} />
             <Route path="/analysis" element={<Analysis />} />
+            <Route path="/team" element={<Team />} />
 
           </Route>
         </Routes>

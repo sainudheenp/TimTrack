@@ -4,7 +4,7 @@ import StackChart from '../../components/Analysis/StackChart'
 
 const Analysis = () => {
 
-  return (<div className="bg-gray-200 rounded-md p-8 md:p-12 h-screen">
+  return (<div className="bg-gray-200 rounded-md p-8 md:p-12 h-full">
 
     <h1 className='text-3xl font-bold' >User Stats tldr</h1>
 
@@ -12,7 +12,7 @@ const Analysis = () => {
       <TotalCardWr />
     </div>
 
-    <div className='h-100 mt-10 w-full'>
+    <div className=' mt-10 w-full'>
       <StackChart />
     </div>
   </div>
