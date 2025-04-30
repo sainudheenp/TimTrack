@@ -1,5 +1,6 @@
 import React from 'react'
 import TotalCardWr from '../../components/Analysis/TotalCard'
+import StackChart from '../../components/Analysis/StackChart'
 
 const Analysis = () => {
 
@@ -11,8 +12,9 @@ const Analysis = () => {
       <TotalCardWr />
     </div>
 
-    <h2>Last Week Stats </h2>
-
+    <div className='h-50'>
+      <StackChart />
+    </div>
   </div>
   )
 }
