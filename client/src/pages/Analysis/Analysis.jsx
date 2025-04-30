@@ -12,7 +12,7 @@ const Analysis = () => {
       <TotalCardWr />
     </div>
 
-    <div className='h-100 mt-10 '>
+    <div className='h-100 mt-10 w-full'>
       <StackChart />
     </div>
   </div>

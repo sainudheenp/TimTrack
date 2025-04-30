@@ -69,7 +69,7 @@ const StackChart = () => {
   
   }
   return (
- <div className='h-full flex '>
+ <div className='h-full flex flex-col md:flex-row'>
      <ResponsiveContainer width="100%" height="100%">
       <BarChart
         width={500}
