@@ -33,7 +33,7 @@ const request = async (method, endpoint, data = null) => {
 
 export const apiClient = {
     get: (endpoint) => request('GET', endpoint),
-    post: (endpoint) => request('POST', endpoint, data),
-    pull: (endpoint) => request('PUT', endpoint, data),
+    post: (endpoint,data) => request('POST', endpoint, data),
+    put: (endpoint,data) => request('PUT', endpoint, data),
     delete: (endpoint) => request('DELETE', endpoint)
 }

@@ -29,36 +29,42 @@ const TimerCard = () => {
         }
         ////postActivity
 
-        const rres =await postActivity(data)
-        console.log("rrrres",rres)
-
         try {
-            const response = await fetch(`${API_BASE}/api/v1/activity`, {
-                method: 'POST',
-                credentials: 'include',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localStorage.token}`,
-                },
-                body: JSON.stringify(data),
-            })
-            const result = await response.json()
-
-            if (response.ok) {
-                window.alert("Activity Added")
-                toast.success("done")
-                console.log('Activity saved successfully:', result)
-            }
-            else {
-                console.error('Error saving activity:', result);
-                toast.error(error.message)
-            }
-        } catch (error) {
-            console.log(error)
-            toast.error(error.message)
+            const result = await postActivity(data);
+            toast.success(result.status === "Success" ? "Activity added successfully." : result.status);
+          } catch (err) {
+            toast.error(err.message || "Failed to save activity.");
+          }
+        
 
 
-        }
+        // try {
+        //     const response = await fetch(`${API_BASE}/api/v1/activity`, {
+        //         method: 'POST',
+        //         credentials: 'include',
+        //         headers: {
+        //             'Content-Type': 'application/json',
+        //             'Authorization': `Bearer ${localStorage.token}`,
+        //         },
+        //         body: JSON.stringify(data),
+        //     })
+        //     const result = await response.json()
+
+        //     if (response.ok) {
+        //         window.alert("Activity Added")
+        //         toast.success("done")
+        //         console.log('Activity saved successfully:', result)
+        //     }
+        //     else {
+        //         console.error('Error saving activity:', result);
+        //         toast.error(error.message)
+        //     }
+        // } catch (error) {
+        //     console.log(error)
+        //     toast.error(error.message)
+
+
+        // }
 
     }
 
