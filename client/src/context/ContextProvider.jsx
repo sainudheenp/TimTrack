@@ -12,7 +12,7 @@ export const ContextProvider = ({ children }) => {
     const [isClicked, setIsClicked] = useState(initialState)
     const [screenSize, setScreenSize] = useState(undefined)
     const handleClick = (clicked) => {
-        setIsClicked({ ...initialState, [clicked]: true })
+        setIsClicked(prev=>({ ...initialState, [clicked]: !prev[clicked] }))
     }
 
     const [isShowing, setIsShowing] = useState(false)

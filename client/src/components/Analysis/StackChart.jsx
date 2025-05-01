@@ -141,6 +141,9 @@ const StackChart = () => {
         </ResponsiveContainer>
 
         <ResponsiveContainer width="100%" height="100%">
+            {/* <span className='text-center items-center'>Todays Activities</span> */}
+            <span className="text-xl font-semibold text-center text-gray-800 mb-4">Today's Activity Breakdown</span>
+
           <PieChart width={400} height={400}>
             <Pie
               data={dataPie}
