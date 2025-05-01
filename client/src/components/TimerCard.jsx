@@ -1,5 +1,8 @@
 import { React, useEffect, useState } from 'react'
 import { useStateContext } from '../context/ContextProvider'
+import { toast } from "react-toastify";
+import { postActivity } from '../api/apiServices';
+
 const API_BASE = import.meta.env.VITE_API_URL
 const TimerCard = () => {
     console.log("TimeCard render")
@@ -18,11 +21,16 @@ const TimerCard = () => {
     const [newProjectName, setNewProjectName] = useState('')
 
     const handleSave = async () => {
+
         const data = {
             activityName: activityName,
             projectName: isCreatingProject ? newProjectName : projectName,
             activityDuration: duration,
         }
+        ////postActivity
+
+        const rres =await postActivity(data)
+        console.log("rrrres",rres)
 
         try {
             const response = await fetch(`${API_BASE}/api/v1/activity`, {
@@ -38,13 +46,18 @@ const TimerCard = () => {
 
             if (response.ok) {
                 window.alert("Activity Added")
+                toast.success("done")
                 console.log('Activity saved successfully:', result)
             }
             else {
-                console.error('Error saving activity:', result)
+                console.error('Error saving activity:', result);
+                toast.error(error.message)
             }
         } catch (error) {
             console.log(error)
+            toast.error(error.message)
+
+
         }
 
     }
