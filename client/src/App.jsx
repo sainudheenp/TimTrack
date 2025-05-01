@@ -15,6 +15,10 @@ import AuthLayout from "./Layouts/AuthLayout";
 import MainLayout from "./Layouts/MainLayout";
 import Analysis from "./pages/Analysis/Analysis";
 import Team from "./pages/Team/Team";
+
+
+import { ToastContainer } from "react-toastify";
+
 function App() {
   const [count, setCount] = useState(0);
   const { activeMenu } = useStateContext()
@@ -40,6 +44,8 @@ function App() {
           </Route>
         </Routes>
       </Router>
+
+      <ToastContainer position="top-right" autoClose={3000} />
     </div>
   );
 }

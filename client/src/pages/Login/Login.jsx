@@ -7,22 +7,23 @@ import InputField from "../../components/InputField";
 import { GoogleAuthProvider, GithubAuthProvider } from "firebase/auth";
 import Cookies from 'js-cookie';
 
+import { toast } from "react-toastify";
 
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  console.log(email)
   const handleLogin = async () => {
     try {
       const userCred = await signInWithEmailAndPassword(auth, email, password);
       const token = await userCred.user.getIdToken();
+      toast.success("Login Successful!");
+
       localStorage.setItem("token", token);
 
       Cookies.set('token', token, {
-        expires: 1, 
-        // secure: true, 
-        // sameSite: 'Strict', 
+        expires: 1,
       });
 
       console.log("Sign in User:", userCred);
@@ -30,6 +31,25 @@ const Login = () => {
       navigate("/");
     } catch (error) {
       console.log(error);
+      let message = "Something went wrong. Please try again.";
+      switch (error.code) {
+        case "auth/user-not-found":
+          message = "No user found with this email.";
+          break;
+        case "auth/wrong-password":
+          message = "Incorrect password.";
+          break;
+        case "auth/invalid-email":
+          message = "Invalid email format.";
+          break;
+        case "auth/too-many-requests":
+          message = "Too many attempts. Please try again later.";
+          break;
+        default:
+          message = error.message;
+
+      }
+      toast.error(message)
     }
   };
 
@@ -55,9 +75,9 @@ const Login = () => {
           <span className="relative z-10 bg-white px-4 text-xl text-gray-600">or</span>
         </p>
 
-        <form action="#" className="mt-4 w-full">
-          <InputField type="email" placeholder="Email address" icon="fa fa-envelope" />
-          <InputField type="password" placeholder="Password" icon="fa fa-lock" />
+        <form className="mt-4 w-full">
+          <InputField type="email" placeholder="Email address" icon="fa fa-envelope" onchange={(e) => setEmail(e.target.value)} />
+          <InputField type="password" placeholder="Password" icon="fa fa-lock" onchange={(e) => setPassword(e.target.value)} />
 
           <a
             href="#"
@@ -77,7 +97,7 @@ const Login = () => {
 
         <p className="text-center m-4 text-sm">
           Don&apos;t have an account?{" "}
-          <a className="text-amber-500 font-semibold hover:underline cursor-pointer" href="#">
+          <a className="text-amber-500 font-semibold hover:underline cursor-pointer" href="/register">
             Sign Up now
           </a>
         </p>
