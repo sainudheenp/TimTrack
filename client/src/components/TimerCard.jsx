@@ -1,9 +1,8 @@
 import { React, useEffect, useState } from 'react'
 import { useStateContext } from '../context/ContextProvider'
 import { toast } from "react-toastify";
-import { postActivity } from '../api/apiServices';
+import { postActivity, getRecentActivity } from '../api/apiServices';
 
-const API_BASE = import.meta.env.VITE_API_URL
 const TimerCard = () => {
     console.log("TimeCard render")
 
@@ -32,39 +31,10 @@ const TimerCard = () => {
         try {
             const result = await postActivity(data);
             toast.success(result.status === "Success" ? "Activity added successfully." : result.status);
-          } catch (err) {
+        } catch (err) {
             toast.error(err.message || "Failed to save activity.");
-          }
-        
+        }
 
-
-        // try {
-        //     const response = await fetch(`${API_BASE}/api/v1/activity`, {
-        //         method: 'POST',
-        //         credentials: 'include',
-        //         headers: {
-        //             'Content-Type': 'application/json',
-        //             'Authorization': `Bearer ${localStorage.token}`,
-        //         },
-        //         body: JSON.stringify(data),
-        //     })
-        //     const result = await response.json()
-
-        //     if (response.ok) {
-        //         window.alert("Activity Added")
-        //         toast.success("done")
-        //         console.log('Activity saved successfully:', result)
-        //     }
-        //     else {
-        //         console.error('Error saving activity:', result);
-        //         toast.error(error.message)
-        //     }
-        // } catch (error) {
-        //     console.log(error)
-        //     toast.error(error.message)
-
-
-        // }
 
     }
 
