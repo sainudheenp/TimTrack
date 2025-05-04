@@ -3,11 +3,12 @@ import { Link } from "react-router-dom";
 import { userStore } from '../../store/userStore'
 import Day from "../../components/Day";
 import StartStopControls from "../../components/StartStopControls";
-import WeekCard from "../../components/WeekCard";
+import WeekCardContainer from "../../components/WeekCardContainer";
 
 import { TbArrowsSplit2 } from "react-icons/tb";
 import { RxCounterClockwiseClock } from "react-icons/rx";
 import { FaRegFolder } from "react-icons/fa";
+
 import TaskCard from "../../components/TaskCard";
 import RecentActivity from "../../components/RecentActivity";
 import ProjectsCard from "../../components/ProjectsCard";
@@ -48,7 +49,7 @@ const Dashboard = () => {
       </div>
     )}
 
-    {isLoading ? (<div className="flex flex-col md:flex-row justify-between gap-6 mt-12 ">
+    {/* {isLoading ? (<div className="flex flex-col md:flex-row justify-between gap-6 mt-12 ">
       <WeekCard
         title="Daily Average "
         progress={'Loading..'}
@@ -84,8 +85,9 @@ const Dashboard = () => {
           icon={<FaRegFolder className="text-5xl" />}
         />
       </div>) : null
+    } */}
 
-    }
+    <WeekCardContainer />
 
     <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
       <TaskCard TaskName={"Recent Activity"} taskDiv={<RecentActivity />} />
