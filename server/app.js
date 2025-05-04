@@ -5,7 +5,7 @@ const cors = require('cors')
 const app = express();
 const activityRoutes = require('./routes/activityRoutes');
 const userRoutes = require('./routes/userRoutes');
-
+const dashboardRoutes = require('./routes/dashboardRoutes')
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true, limit: "10kb" }));
@@ -16,8 +16,7 @@ app.use(cors({ origin: true, credentials: true }));
 //routes
 app.use('/api/v1/user', userRoutes)
 app.use('/api/v1/activity', activityRoutes)
-
-
+app.use('/api/v1/dashboard', dashboardRoutes)
 
 
 // app.use('/',)

@@ -1,6 +1,7 @@
 import React from 'react'
 import TotalCardWr from '../../components/Analysis/TotalCard'
 import StackChart from '../../components/Analysis/StackChart'
+import RecentActivities from '../../components/Analysis/RecentActivities'
 
 const Analysis = () => {
 
@@ -15,6 +16,7 @@ const Analysis = () => {
     <div className=' mt-10 w-full'>
       <StackChart />
     </div>
+    <RecentActivities/>
   </div>
   )
 }

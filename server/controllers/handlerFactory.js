@@ -16,7 +16,7 @@ exports.createOne = (Model) => {
 
 exports.getAll = (Model) => {
     return catchAsync(async (req, res, next) => {
-        const doc = await Model.find({ userId: req.user.uid }).limit(5).sort({updatedAt: -1})
+        const doc = await Model.find({ userId: req.user.uid }).sort({updatedAt: -1})
 
 
         res.status(201).json({

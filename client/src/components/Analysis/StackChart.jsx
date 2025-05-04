@@ -168,7 +168,7 @@ const StackChart = () => {
 
       </div>
 
-      <div className='mt-20'>
+      {/* <div className='mt-20'>
         <h2 className='text-2xl font-medium mb-7'>Recent activities :</h2>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -196,7 +196,7 @@ const StackChart = () => {
             </TableBody>
           </Table>
         </TableContainer>
-      </div>
+      </div> */}
 
     </div>
   )

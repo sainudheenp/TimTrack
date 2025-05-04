@@ -10,8 +10,8 @@ import { RxCounterClockwiseClock } from "react-icons/rx";
 import { FaRegFolder } from "react-icons/fa";
 
 import TaskCard from "../../components/TaskCard";
-import RecentActivity from "../../components/RecentActivity";
-import ProjectsCard from "../../components/ProjectsCard";
+import RecentActivity from "../../components/RecentActivityContainer";
+import ProjectsCard from "../../components/ProjectsCardContainer";
 import MembersCard from "../../components/MembersCard";
 import TodoCard from "../../components/TodoCard";
 
@@ -33,7 +33,7 @@ const Dashboard = () => {
   console.log("Zustand-user", user ? user : "no user");
 
   // const { WeekAvg, TotalTime, ProjectsCount } = useWeeklyStats();
-  const { data, isLoading, error } = useWeeklyStats();
+  // const { data, isLoading, error } = useWeeklyStats();
 
 
   return <div className="bg-gray-200 rounded-md p-8 md:p-12">
@@ -91,7 +91,7 @@ const Dashboard = () => {
 
     <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
       <TaskCard TaskName={"Recent Activity"} taskDiv={<RecentActivity />} />
-      <TaskCard TaskName={"Projects"} taskDiv={<ProjectsCard />} />
+      <TaskCard TaskName={"Recent Projects"} taskDiv={<ProjectsCard />} />
       <TaskCard TaskName={"Members"} taskDiv={<MembersCard />} />
       <TaskCard TaskName={"To Do"} taskDiv={<TodoCard />} Headers={["Todo", "Time"]} />
     </div>

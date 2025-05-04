@@ -11,6 +11,9 @@ router.route("/")
 router.route("/weekStatus/")
     .get(validateToken, activityController.getWeeklyActivity)
 
+
+
+
 module.exports = router
 
 /*
