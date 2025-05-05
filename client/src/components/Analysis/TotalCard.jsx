@@ -11,7 +11,8 @@ const TotalCard = ({ actCount, actName }) => {
 
 const TotalCardWr = (data) => {
     // useEffect(() => {
-console.log('data tot',data)
+        
+console.log('data tot',data[0].overall[0])
     // })
     return (
         <div className='flex  justify-evenly p-4 gap-8  bg-gray-200 mt-5 flex-col md:flex-row'>
