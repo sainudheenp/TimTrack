@@ -11,7 +11,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
+import formatTime from '../../utils/formatTime';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -48,7 +48,10 @@ const rows = [
 
 
 
-const   StackChart = (ChartData) => {
+const StackChart = ({ChartData}) => {
+  const barData = ChartData.data.BarChart
+  const pieData = ChartData.data.PieChart
+  console.log('data stat pie', pieData)
   const data = [
     {
       name: 'Page A',
@@ -141,19 +144,20 @@ const   StackChart = (ChartData) => {
         </ResponsiveContainer>
 
         <ResponsiveContainer width="100%" height="100%">
-            {/* <span className='text-center items-center'>Todays Activities</span> */}
-            <span className="text-xl font-semibold text-center text-gray-800 mb-4">Today's Activity Breakdown</span>
+          {/* <span className='text-center items-center'>Todays Activities</span> */}
+          <span className="text-xl font-semibold text-center text-gray-800 mb-4">Today's Activity Breakdown</span>
 
           <PieChart width={400} height={400}>
             <Pie
-              data={dataPie}
+              data={pieData}
               cx="50%"
               cy="50%"
               labelLine={false}
               label={renderCustomizedLabel}
               outerRadius={80}
               fill="#8884d8"
-              dataKey="value"
+              dataKey="actDuration"
+               nameKey="_id"
             >
               {data.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
@@ -161,7 +165,8 @@ const   StackChart = (ChartData) => {
             </Pie>
             <CartesianGrid strokeDasharray="3 3" />
 
-            <Tooltip />
+            {/* <Tooltip  /> */}
+            <Tooltip labelFormatter={(label) => `Activity: ${label}`} formatter={(value) => `${formatTime(value)} hrs`} />
             <Legend />
           </PieChart>
         </ResponsiveContainer>

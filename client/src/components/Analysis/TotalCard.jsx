@@ -1,4 +1,4 @@
-import {React ,useEffect} from 'react'
+import { React, useEffect } from 'react'
 import formatTime from '../../utils/formatTime';
 const TotalCard = ({ actCount, actName }) => {
     return (
@@ -9,17 +9,18 @@ const TotalCard = ({ actCount, actName }) => {
     )
 }
 
-const TotalCardWr = (data) => {
+const TotalCardWr = ({ data }) => {
     // useEffect(() => {
-        
-console.log('data tot',data[0].overall[0])
+    const overAll = data[0].overall[0]
+    const today = data[0].today[0]
+    // console.log('data tot', today)
     // })
     return (
         <div className='flex  justify-evenly p-4 gap-8  bg-gray-200 mt-5 flex-col md:flex-row'>
-            <TotalCard actName={'Total Hours'} actCount={formatTime(data)} />
-            <TotalCard actName={'Projects'} actCount={727} />
-            <TotalCard actName={'Activities'} actCount={727} />
-            <TotalCard actName={"Today"} actCount={727} />
+            <TotalCard actName={'Total Hours'} actCount={formatTime(overAll.totalHours)} />
+            <TotalCard actName={'Projects'} actCount={overAll.projects.length} />
+            <TotalCard actName={'Activities'} actCount={overAll.TActivities} />
+            <TotalCard actName={"Today"} actCount={formatTime(today.todayHours)} />
 
 
 

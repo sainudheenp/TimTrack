@@ -104,7 +104,7 @@ exports.getAnalysis = catchAsync(
         const [TotalCard, BarChart, PieChart] = await Promise.all([
 
             Activity.aggregate([
-                { $match: { userId: req.user.uid ,    projectName: { $nin: [null, ""] }} },
+                { $match: { userId: req.user.uid, projectName: { $nin: [null, ""] } } },
                 // { $group: { _id: null, Tactivities: { $sum: 1 }, Tprojects: { $addToSet: "$projectName" }, Hours: { $sum: '$activityDuration' } } }
                 {
                     $facet: {
@@ -114,14 +114,14 @@ exports.getAnalysis = catchAsync(
                                     _id: null,
                                     totalHours: { $sum: "$activityDuration" },
                                     projects: { $addToSet: "$projectName" },
-                                   
+
                                     TActivities: { $sum: 1 }
                                 }
                             }
                         ],
                         today: [
                             { $match: { createdAt: { $gte: startOfToday } } },
-                            { $group: { _id:'null', todayHours: { $sum: "$activityDuration" } } }
+                            { $group: { _id: 'null', todayHours: { $sum: "$activityDuration" } } }
                         ]
                     }
                 }
@@ -129,20 +129,19 @@ exports.getAnalysis = catchAsync(
 
             //bar chart
             Activity.aggregate([
-                { $match: { userId: req.user.uid, createdAt: { $gte: lastSevenDays } ,projectName: { $exists: true, $nin: [null, ""] } } },
+                { $match: { userId: req.user.uid, createdAt: { $gte: lastSevenDays } } },
                 {
                     $group: {
                         _id: { $dateToString: { format: "%Y-%m-%d", date: "$createdAt" } },
                         projects: { $addToSet: "$projectName" },
-                        projectDuaration: { $sum: "$activityDuration" }
+                        projectDuration: { $sum: "$activityDuration" }
                     }
-                }
-
+                },
             ]),
 
             //piechart
             Activity.aggregate([
-                { $match: { userId: req.user.uid,  createdAt: { $gte: startOfToday },projectName: { $exists: true, $nin: [null, ""] }  } },
+                { $match: { userId: req.user.uid, createdAt: { $gte: startOfToday }, projectName: { $exists: true, $nin: [null, ""] } } },
                 { $group: { _id: "$activityName", actDuration: { $sum: "$activityDuration" } } }
             ]),
 
