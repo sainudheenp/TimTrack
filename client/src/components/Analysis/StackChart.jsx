@@ -48,7 +48,7 @@ const rows = [
 
 
 
-const StackChart = ({ChartData}) => {
+const StackChart = ({ ChartData }) => {
   const barData = ChartData.data.BarChart
   const pieData = ChartData.data.PieChart
   console.log('data stat pie', pieData)
@@ -117,6 +117,8 @@ const StackChart = ({ChartData}) => {
   }
   return (
     <div className="h-full">
+
+      <span className="text-xl font-semibold text-center text-gray-800 mb-4">Last 7 Days's Breakdown</span>
       <div className='h-100 flex flex-col md:flex-row'>
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
@@ -157,17 +159,17 @@ const StackChart = ({ChartData}) => {
               outerRadius={80}
               fill="#8884d8"
               dataKey="actDuration"
-               nameKey="_id"
+              nameKey="_id"
             >
               {data.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
               ))}
             </Pie>
+            <Legend />
             <CartesianGrid strokeDasharray="3 3" />
+            <Tooltip labelFormatter={(label) => `Activity: ${label}`} formatter={(value) => `${formatTime(value)} hrs`} />
 
             {/* <Tooltip  /> */}
-            <Tooltip labelFormatter={(label) => `Activity: ${label}`} formatter={(value) => `${formatTime(value)} hrs`} />
-            <Legend />
           </PieChart>
         </ResponsiveContainer>
 
