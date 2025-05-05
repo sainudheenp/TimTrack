@@ -51,7 +51,14 @@ const rows = [
 const StackChart = ({ ChartData }) => {
   const barData = ChartData.data.BarChart
   const pieData = ChartData.data.PieChart
-  console.log('data stat pie', pieData)
+  console.log('data stat pie', barData)
+
+  const datedArray = []
+
+
+
+
+
   const data = [
     {
       name: 'Page A',

@@ -134,16 +134,21 @@ exports.getAnalysis = catchAsync(
                     $group: {
                         _id: { $dateToString: { format: "%Y-%m-%d", date: "$createdAt" } },
                         projects: { $addToSet: "$projectName" },
-                        projectDuration: { $sum: "$activityDuration" }
+                        projectDuration: { $sum: "$activityDuration" },
+                        
+
                     }
                 },
+    {
+        $sort: { _id: 1 }
+    }
             ]),
 
-            //piechart
-            Activity.aggregate([
-                { $match: { userId: req.user.uid, createdAt: { $gte: startOfToday }, projectName: { $exists: true, $nin: [null, ""] } } },
-                { $group: { _id: "$activityName", actDuration: { $sum: "$activityDuration" } } }
-            ]),
+    //piechart
+    Activity.aggregate([
+        { $match: { userId: req.user.uid, createdAt: { $gte: startOfToday }, projectName: { $exists: true, $nin: [null, ""] } } },
+        { $group: { _id: "$activityName", actDuration: { $sum: "$activityDuration" } } }
+    ]),
 
 
 
@@ -151,10 +156,10 @@ exports.getAnalysis = catchAsync(
         ])
 
 
-        res.status(200).json({
-            status: 'success',
-            data: { TotalCard, BarChart, PieChart }
-        });
+res.status(200).json({
+    status: 'success',
+    data: { TotalCard, BarChart, PieChart }
+});
 
     }
 )
