@@ -48,7 +48,7 @@ const rows = [
 
 
 
-const StackChart = () => {
+const   StackChart = (ChartData) => {
   const data = [
     {
       name: 'Page A',

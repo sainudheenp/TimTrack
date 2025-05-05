@@ -4,7 +4,7 @@ import formatTime from '../utils/formatTime';
 import { useQuery } from '@tanstack/react-query';
 
   const  useDashboardData = () => {
-    console.log("USE DASHBOARD")
+    // console.log("USE DASHBOARD")
     return useQuery({
         queryKey: ["dashboardData"],
         queryFn: async () => {
