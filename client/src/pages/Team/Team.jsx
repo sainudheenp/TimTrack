@@ -7,6 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Openmodel from '../../components/Model/Openmodel';
 
 
 
@@ -61,10 +62,11 @@ const Team = () => {
 
       <div className='flex flex-col gap-3 md:flex-row  justify-between'>
         <h1 className='text-3xl font-bold' >Team Members</h1>
-        <div className='flex bg-green-50 border-1 border-amber-400 focus-within:border-black  p-2 rounded-2xl' >
+        {/* <div className='flex bg-green-50 border-1 border-amber-400 focus-within:border-black  p-2 rounded-2xl' >
           <input className='outline-0' type="text" placeholder='Enter Room Id' />
           <button className='font-bold text-2xl text-gray-500 cursor-pointer hover:text-black '><i className="fa-solid fa-check  "></i></button>
-        </div>
+        </div> */}
+        <Openmodel />
       </div>
 
       <div className='mt-10'>
