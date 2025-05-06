@@ -9,10 +9,6 @@ import {
 
 // import { userStore } from "../store/userStore.js";
 
-
-
-
-
 export const registerWithProvider = async ({ Pprovider }) => {
     const provider = new Pprovider()
     const result = await signInWithPopup(auth, provider, browserPopupRedirectResolver);
@@ -22,10 +18,6 @@ export const registerWithProvider = async ({ Pprovider }) => {
     console.log("Sign in User:", result);
     console.log("UID :", result.user.uid);
 
-    // const setUser = userStore((state) => state.setUser);
-    // setUser(result.user)
-    // userStore.getState().setUser(result.user);
-    // userStore.getState().setToken(token);
 
     return { user: result.user, token }
 }
