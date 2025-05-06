@@ -9,7 +9,7 @@
     import Paper from '@mui/material/Paper';
     import { useQuery } from '@tanstack/react-query';
     import { getRecentActivity } from '../../api/apiServices';
-
+import formatTime from '../../utils/formatTime';
 
     const RecentActivities = () => {
 
@@ -44,17 +44,19 @@
         }
 
         const rows = [
-            createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-            createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-            createData('Eclair', 262, 16.0, 24, 6.0),
-            createData('Cupcake', 305, 3.7, 67, 4.3),
-            createData('Gingerbread', 356, 16.0, 49, 3.9),
+            createData('Frozen yoghurt', 159, 6.0, 24),
+            createData('Ice cream sandwich', 237, 9.0, 3),
+            createData('Eclair', 262, 16.0, 24),
+            createData('Cupcake', 305, 3.7, 4.3),
+            createData('Gingerbread', 356, 16.0, 3.9),
         ];
 
         if (isLoading) {
             return <div>loading...</div>
         }
-        console.log("data act all", data)
+        let activities = data.data.data;
+        console.log("data act all", data.data.data)
+        // data.data.data.map((row)=>console.log(row.activityName))
         return (
             <div className='mt-20'>
                 <h2 className='text-2xl font-medium mb-7'>Recent activities :</h2>
@@ -62,23 +64,26 @@
                     <Table sx={{ minWidth: 700 }} aria-label="customized table">
                         <TableHead>
                             <TableRow>
-                                <StyledTableCell>Dessert (100g serving)</StyledTableCell>
-                                <StyledTableCell align="right">Calories</StyledTableCell>
-                                <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
-                                <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
-                                <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell>
+                                <StyledTableCell>Activity name</StyledTableCell>
+                                <StyledTableCell align="right">Hours</StyledTableCell>
+                                <StyledTableCell align="right">Project Name</StyledTableCell>
+                                <StyledTableCell align="right">Time</StyledTableCell>
+                                {/* <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell> */}
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {rows.map((row) => (
-                                <StyledTableRow key={row.name}>
-                                    <StyledTableCell component="th" scope="row">
-                                        {row.name}
+                            {activities.map((row) => (
+                                <StyledTableRow key={row.activityName}>
+                                     <StyledTableCell component="th" scope="row">
+                                        {row.activityName}
                                     </StyledTableCell>
-                                    <StyledTableCell align="right">{row.calories}</StyledTableCell>
-                                    <StyledTableCell align="right">{row.fat}</StyledTableCell>
-                                    <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-                                    <StyledTableCell align="right">{row.protein}</StyledTableCell>
+                                    <StyledTableCell align="right" scope="row">
+                                        {formatTime(row.activityDuration)}
+                                    </StyledTableCell>
+                                    <StyledTableCell align="right">{row.projectName}</StyledTableCell>
+                                    <StyledTableCell align="right">{row.createdAt}</StyledTableCell>
+                                    {/* <StyledTableCell align="right">{row.carbs}</StyledTableCell>
+                                    <StyledTableCell align="right">{row.protein}</StyledTableCell> */}
                                 </StyledTableRow>
                             ))}
                         </TableBody>
