@@ -20,7 +20,7 @@ app.use('/api/v1/user', userRoutes)
 app.use('/api/v1/activity', activityRoutes)
 app.use('/api/v1/dashboard', dashboardRoutes)
 app.use('/api/v1/analysis', analysisRoutes)
-app.use('/api/v1/rooom', roomRotes)
+app.use('/api/v1/room', roomRotes)
 
 // app.use('/',)
 

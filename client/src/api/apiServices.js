@@ -13,6 +13,8 @@ export const postActivity = (data) => apiClient.post('/api/v1/activity', data)
 //weekly
 export const getWeeklStats = () => apiClient.get('/api/v1/activity/weekStatus')
 
-export const getDasboardData =() => apiClient.get("/api/v1/dashboard")
+export const getDasboardData = () => apiClient.get("/api/v1/dashboard")
 
-export const getAnalysisData =()=> apiClient.get("/api/v1/analysis")
+export const getAnalysisData = () => apiClient.get("/api/v1/analysis")
+
+export const joinRoom = (data) => apiClient.post("/api/v1/room",data) 
