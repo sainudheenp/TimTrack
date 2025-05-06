@@ -12,18 +12,16 @@ const TotalCard = ({ actCount, actName }) => {
 const TotalCardWr = ({ data }) => {
     // useEffect(() => {
     const overAll = data[0].overall[0]
-    const today = data[0].today[0]
-    // console.log('data tot', today)
+    const today = formatTime(data[0].today[0].todayHours)=='NaN:NaN:NaN' ?"No Activity ": formatTime(data[0].today[0].todayHours)
+
+    // console.log('data tot', formatTime(data[0].today[0].todayHours))
     // })
     return (
         <div className='flex  justify-evenly p-4 gap-8  bg-gray-200 mt-5 flex-col md:flex-row'>
             <TotalCard actName={'Total Hours'} actCount={formatTime(overAll.totalHours)} />
             <TotalCard actName={'Projects'} actCount={overAll.projects.length} />
             <TotalCard actName={'Activities'} actCount={overAll.TActivities} />
-            <TotalCard actName={"Today"} actCount={formatTime(today.todayHours)} />
-
-
-
+            <TotalCard actName={"Today"} actCount={today|| "Not"} />
         </div>
     )
 }
