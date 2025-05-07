@@ -12,7 +12,7 @@ const TotalCard = ({ actCount, actName }) => {
 const TotalCardWr = ({ data }) => {
     // useEffect(() => {
     const overAll = data[0].overall[0]
-    const todayData = data[0].today[0] || 0
+    const todayData = data[0].today[0].todayHours || 0
     const today = formatTime(todayData)=='NaN:NaN:NaN' ?"No Activity ": formatTime(todayData)
 
     // const today = formatTime(data[0].today[0].todayHours)=='NaN:NaN:NaN' ?"No Activity ": formatTime(data[0].today[0].todayHours)

@@ -3,7 +3,8 @@ const factory = require('./handlerFactory')
 const catchAsync = require('../utils/catchAsync')
 
 
-exports.getAllActivity = factory.getAll(Activity)
+// exports.getAllActivity = factory.getAll(Activity,{isTodo:false})
+exports.getAllActivity = factory.getAll(Activity,{})
 
 exports.createActivity = catchAsync(async (req, res, next) => {
     const newActivity = await Activity.create({

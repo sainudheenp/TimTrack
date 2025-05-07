@@ -16,7 +16,7 @@ const Todo = () => {
     }
     const data = {
       activityName: activityName,
-      projectName:   newProjectName,
+      projectName: newProjectName,
       activityDuration: 0,
       expectedTime: 90,
       isTodo: true,
@@ -42,10 +42,14 @@ const Todo = () => {
   useEffect(() => {
 
     // handleSave()
-  },[])
+  }, [])
   return (
-    <div className='w-1/2'>
-      <TodoCard />
+    <div className="bg-gray-200 rounded-md p-8 md:p-12 h-full">
+      <div className='fixed bottom-6 right-6 md:right-15 md:bottom-15 text-3xl p-5 py-4 bg-amber-300 rounded-full font-extrabold' style={{ zIndex: "100" }}>
+        <i className="fa fa-plus " aria-hidden="true"></i>
+      </div>
+      <h1 className='text-3xl font-bold' > Todo </h1>
+      <div>      <TodoCard /> </div>
     </div>
   )
 }
