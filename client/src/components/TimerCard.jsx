@@ -7,7 +7,7 @@ const TimerCard = () => {
     console.log("TimeCard render")
 
     const { isShowing, setIsShowing, isCreatingProject, setIsCreatingProject, isRunning,
-        setIsRunning, duration, handleControll, intervalId } = useStateContext()
+        setIsRunning, duration, handleControll, intervalId, setDuration } = useStateContext()
 
     const hours = Math.floor(duration / 3600)
     const minutes = Math.floor((duration % 3600) / 60)
@@ -20,7 +20,10 @@ const TimerCard = () => {
     const [newProjectName, setNewProjectName] = useState('')
 
     const handleSave = async () => {
-
+        if (!activityName || (!projectName && !newProjectName)) {
+            toast.error("Please fill Activity Details")
+            return
+        }
         const data = {
             activityName: activityName,
             projectName: isCreatingProject ? newProjectName : projectName,
@@ -31,6 +34,13 @@ const TimerCard = () => {
         try {
             const result = await postActivity(data);
             toast.success(result.status === "Success" ? "Activity added successfully." : result.status);
+            if (result.status == "Success") {
+                // handleControll();
+                clearInterval(intervalId);
+                setActivityName('');
+                setIsRunning(false);
+                setDuration(0)
+            }
         } catch (err) {
             toast.error(err.message || "Failed to save activity.");
         }
@@ -38,7 +48,7 @@ const TimerCard = () => {
 
     }
 
-    
+
 
 
     useEffect(() => {
@@ -65,7 +75,7 @@ const TimerCard = () => {
                     type="text"
                     placeholder="e.g. Writing code..."
                     className="w-full p-3 border rounded-lg focus:outline-none focus:ring- focus:ring-amber-300"
-
+                    value={activityName}
                     onChange={(e) => { setActivityName(e.target.value) }}
                 />
             </div>

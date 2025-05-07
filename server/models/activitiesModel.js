@@ -17,7 +17,10 @@ const activitiesSchema = new mongoose.Schema({
     userId: {
         type: String,
         required: true
-    }
+    },
+    isTodo: { type: Boolean, default: false },
+    expectedTime: Number,
+    isCompleted: { type: Boolean, default: false }
 }
     ,
     { timestamps: true });

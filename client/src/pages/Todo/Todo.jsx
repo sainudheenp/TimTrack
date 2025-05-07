@@ -1,8 +1,11 @@
 import React from 'react'
+import TodoCard from '../../components/TodoCard'
 
 const Todo = () => {
   return (
-    <div>Todo</div>
+    <div className='w-1/2'>
+      <TodoCard/>
+    </div>
   )
 }
 

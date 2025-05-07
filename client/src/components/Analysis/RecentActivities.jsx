@@ -65,7 +65,7 @@ import formatTime from '../../utils/formatTime';
                         <TableHead>
                             <TableRow>
                                 <StyledTableCell>Activity name</StyledTableCell>
-                                <StyledTableCell align="right">Hours</StyledTableCell>
+                                <StyledTableCell align="right">Duration</StyledTableCell>
                                 <StyledTableCell align="right">Project Name</StyledTableCell>
                                 <StyledTableCell align="right">Time</StyledTableCell>
                                 {/* <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell> */}
