@@ -13,7 +13,7 @@ export const userStore = create((set) => ({
     setToken: (args) => set({ token: args }),
 
     projects: null,
-    setFiveProject: (args) => set({ projects: args }),
+    setRecentProject: (args) => set({ projects: args }),
 
     //clear
     clearUser: () => {

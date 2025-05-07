@@ -2,9 +2,10 @@ import { React, useEffect, useState } from 'react'
 import { useStateContext } from '../context/ContextProvider'
 import { toast } from "react-toastify";
 import { postActivity, getRecentActivity } from '../api/apiServices';
-
+import { userStore } from '../store/userStore';
 const TimerCard = () => {
-    console.log("TimeCard render")
+    const projectsData = userStore((state) => state.projects)
+    console.log("TimeCard render",projectsData)
 
     const { isShowing, setIsShowing, isCreatingProject, setIsCreatingProject, isRunning,
         setIsRunning, duration, handleControll, intervalId, setDuration } = useStateContext()
@@ -87,9 +88,8 @@ const TimerCard = () => {
                     {!isCreatingProject ? (
                         <select className="flex-1 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" onChange={(e) => setProjectName(e.target.value)}>
                             <option value="">Select Project</option>
-                            <option value="proj1">FSD</option>
-                            <option value="proj2">Design</option>
-                            <option value="proj3">Testing</option>
+                            {projectsData.map((item)=>(<option value={item._id}>{item._id}</option>))}
+                            <option value="test">test</option>
                         </select>
                     ) : (
                         <input

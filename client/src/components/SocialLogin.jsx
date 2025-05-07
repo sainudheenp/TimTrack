@@ -26,7 +26,7 @@ const SocialLogin = ({ text, img, provider }) => {
         // setUser(user);
         // setToken(token);
         // userStore.getState().setUser(user);
-        userStore.getState().setToken(token);
+          userStore.getState().setToken(token);
       }
     } catch (error) {
       console.log("Error in SocialLogin", error);
