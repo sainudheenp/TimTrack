@@ -2,6 +2,8 @@ const factory = require('./handlerFactory')
 const Room = require('../models/roomModel')
 const catchAsync = require('../utils/catchAsync')
 const mongoose = require('mongoose')
+const Activity = require('../models/activitiesModel')
+
 
 // exports.createRoom = factory.createOne(Room)
 
@@ -46,6 +48,12 @@ exports.createRoom = catchAsync(
             console.error(error);
             res.status(500).json({ error: 'room error' });
         }
+    }
+)
+
+exports.getRoomDatas = catchAsync(
+    async (req, res) => {
+        const room = Room.find({ users: { $in: [req.user.id] } })
     }
 )
 

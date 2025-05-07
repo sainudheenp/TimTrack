@@ -15,54 +15,81 @@ const MainLayout = () => {
     const { activeMenu } = useStateContext()
     const navigate = useNavigate()
 
+    // useEffect(() => {
+
+    //     if (!localStorage.getItem('token')) {
+    //         navigate('/login')
+    //     }
+
+
+    //     //token refresh
+    //     const unsubscribe = onIdTokenChanged(auth, async (user) => {
+    //         if (user) {
+    //             const token = await user.getIdToken()
+    //             localStorage.setItem('token', token)
+    //             console.log('Token refreshed:', token)
+    //             const res = await getUserProfile();
+    //             userStore.getState().setUser(res.user);
+    //         } else {
+    //             console.log("no user signd in ,please login")
+    //             localStorage.clear()
+    //             navigate('/login')
+
+    //         }
+    //     })
+
+
+
+
+
+    //     const fetchUser = async () => {
+
+    //         try {
+
+    //             const res = await getUserProfile()
+    //             userStore.getState().setUser(res.user);
+
+
+    //         } catch (error) {
+    //             console.log('GetME fetch', error)
+    //         }
+    //     }
+
+
+
+
+
+
+
+
+    //     fetchUser()
+    //     return () => unsubscribe()
+    // }, [])
+
     useEffect(() => {
-
-        if (!localStorage.getItem('token')) {
-            navigate('/login')
-        }
-
-
-        //token refresh
         const unsubscribe = onIdTokenChanged(auth, async (user) => {
             if (user) {
-                const token = await user.getIdToken()
-                localStorage.setItem('token', token)
-                console.log('Token refreshed:', token)
+                try {
+                    const token = await user.getIdToken();
+                    localStorage.setItem('token', token);
+                    console.log('Token refreshed:', token);
+
+                    const res = await getUserProfile();
+                    userStore.getState().setUser(res.user);
+                } catch (error) {
+                    console.log('Error fetching user profile:', error);
+                    localStorage.clear();
+                    navigate('/login');
+                }
             } else {
-                console.log("no user signd in ,please login")
-                localStorage.clear()
-                navigate('/login')
-
+                console.log("No user signed in, redirecting...");
+                localStorage.clear();
+                navigate('/login');
             }
-        })
+        });
 
-
-
-
-
-        const fetchUser = async () => {
-
-            try {
-            
-                const res = await getUserProfile()
-                userStore.getState().setUser(res.user);
-
-
-            } catch (error) {
-                console.log('GetME fetch', error)
-            }
-        }
-
-
-
-
-
-
-
-
-        fetchUser()
-        return () => unsubscribe()
-    }, [])
+        return () => unsubscribe();
+    }, []);
 
 
     return (
