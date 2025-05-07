@@ -12,7 +12,10 @@ const TotalCard = ({ actCount, actName }) => {
 const TotalCardWr = ({ data }) => {
     // useEffect(() => {
     const overAll = data[0].overall[0]
-    const today = formatTime(data[0].today[0].todayHours)=='NaN:NaN:NaN' ?"No Activity ": formatTime(data[0].today[0].todayHours)
+    const todayData = data[0].today[0] || 0
+    const today = formatTime(todayData)
+
+    // const today = formatTime(data[0].today[0].todayHours)=='NaN:NaN:NaN' ?"No Activity ": formatTime(data[0].today[0].todayHours)
 
     // console.log('data tot', formatTime(data[0].today[0].todayHours))
     // })
@@ -21,7 +24,7 @@ const TotalCardWr = ({ data }) => {
             <TotalCard actName={'Total Hours'} actCount={formatTime(overAll.totalHours)} />
             <TotalCard actName={'Projects'} actCount={overAll.projects.length} />
             <TotalCard actName={'Activities'} actCount={overAll.TActivities} />
-            <TotalCard actName={"Today"} actCount={today|| "Not"} />
+            <TotalCard actName={"Today"} actCount={today || "Not"} />
         </div>
     )
 }
