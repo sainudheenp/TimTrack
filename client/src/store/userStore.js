@@ -12,7 +12,7 @@ export const userStore = create((set) => ({
     token: null,
     setToken: (args) => set({ token: args }),
 
-    projects: null,
+    projects: [ {_id:"Tesla"}, {_id:"Todo"} ],
     setRecentProject: (args) => set({ projects: args }),
 
     //clear

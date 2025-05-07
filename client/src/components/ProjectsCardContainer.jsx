@@ -3,7 +3,6 @@ import ProgressTile from './ProgressTile'
 import useWeeklyStats from '../hooks/useWeeklyStats';
 import formatTime from '../utils/formatTime';
 import useDashboardData from '../hooks/useDashboard';
-import { userStore } from '../store/userStore';
 
 
 const ProjectsCard = () => {
@@ -14,7 +13,6 @@ const ProjectsCard = () => {
     console.log("recent activity", data)
 
 
-    userStore.getState().setRecentProject(data)
     return (
         <>
             {isLoading ? (<div>Loading Recent Projects....</div>) : error ? (<div> Something Went Wrong! </div>)

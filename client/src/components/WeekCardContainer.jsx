@@ -3,6 +3,7 @@ import useWeeklyStats from '../hooks/useWeeklyStats'
 import { TbArrowsSplit2 } from "react-icons/tb";
 import { RxCounterClockwiseClock } from "react-icons/rx";
 import { FaRegFolder } from "react-icons/fa";
+import { userStore } from '../store/userStore';
 
 const WeekCard = ({ title, progress, icon }) => {
   return (
@@ -45,7 +46,7 @@ const cardConfig = [
 const WeekCardContainer = () => {
   const { data, isLoading, error } = useWeeklyStats();
 
-
+  console.log("Tim project opt", data?.weekData)
 
   // isLoading ? (<div className="flex flex-col md:flex-row justify-between gap-6 mt-12 " >
   //   <WeekCard
@@ -105,13 +106,15 @@ const WeekCardContainer = () => {
   }
 
   if (data) {
+    userStore.getState().setRecentProject(data?.weekData)
+
     return (
       <div className="flex flex-col md:flex-row justify-between gap-6 mt-12 " >
         {cardConfig.map((card, idx) => (
           <WeekCard
             key={idx}
             title={card.title}
-            progress={data?.[card.keyV] ?? 'N/A'}            icon={card.icon}
+            progress={data?.[card.keyV] ?? 'N/A'} icon={card.icon}
           />
         ))}
       </div>

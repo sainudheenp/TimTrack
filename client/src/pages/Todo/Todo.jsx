@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { postActivity } from '../../api/apiServices';
 import TimerCard from '../../components/TimerCard';
-
+import Openmodel from '../../components/Model/Openmodel'
 const Todo = () => {
   const [isShowing, setIsShowing] = useState(false)
 
@@ -36,6 +36,7 @@ const Todo = () => {
   return (
     <div className="min-h-screen bg-gray-100 px-6 py-10">
       {isShowing && <TimerCard />}
+      {/* <Openmodel/> */}
       <div className="max-w-6xl mt-10 mx-auto bg-white rounded-xl shadow-md p-6 md:p-10">
 
         <div className="flex items-center justify-between mb-6">
