@@ -49,7 +49,57 @@ const Todo = () => {
         <i className="fa fa-plus " aria-hidden="true"></i>
       </div>
       <h1 className='text-3xl font-bold' > Todo </h1>
-      <div>      <TodoCard /> </div>
+      <div className='p-4 bg-white  rounded-xl mt-4'>
+        <table className='w-full m-4   '>
+          <thead className='mb-10 bg-gray-200 text-xl font-medium'>
+            <th>HeadOne</th>
+            <th>HeadTwo</th>
+            <th>HeadThree</th>
+            <th>HeadFour</th>
+            <th>HeadFive</th>
+          </thead>
+          <tbody className='text-center'>
+            <tr>
+              <td>HeadOne</td>
+              <td>HeadTwo</td>
+              <td>HeadThree</td>
+              <td>HeadFour</td>
+              <td>HeadFive</td>
+            </tr>
+            <tr>
+              <td>HeadOne</td>
+              <td>HeadTwo</td>
+              <td>HeadThree</td>
+              <td>HeadFour</td>
+              <td>HeadFive</td>
+            </tr>  <tr>
+              <td>HeadOne</td>
+              <td>HeadTwo</td>
+              <td>HeadThree</td>
+              <td>HeadFour</td>
+              <td>HeadFive</td>
+            </tr>  <tr>
+              <td>HeadOne</td>
+              <td>HeadTwo</td>
+              <td>HeadThree</td>
+              <td>HeadFour</td>
+              <td>HeadFive</td>
+            </tr>  <tr>
+              <td>HeadOne</td>
+              <td>HeadTwo</td>
+              <td>HeadThree</td>
+              <td>HeadFour</td>
+              <td>HeadFive</td>
+            </tr>  <tr>
+              <td>HeadOne</td>
+              <td>HeadTwo</td>
+              <td>HeadThree</td>
+              <td>HeadFour</td>
+              <td>HeadFive</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 }
