@@ -1,107 +1,78 @@
-import React, { useEffect, useState } from 'react'
-import TodoCard from '../../components/TodoCard'
+import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { postActivity } from '../../api/apiServices';
+
 const Todo = () => {
-  console.log("am todo")
-  const [activityName, setActivityName] = useState('sarala')
-  const [projectName, setProjectName] = useState('')
-  const [newProjectName, setNewProjectName] = useState('heysaru')
-  const [expectedTime, setExpectedTime] = useState(10)
+  const [activityName, setActivityName] = useState('sarala');
+  const [projectName, setProjectName] = useState('');
+  const [newProjectName, setNewProjectName] = useState('heysaru');
+  const [expectedTime] = useState(10);
 
   const handleSave = async () => {
     if (!activityName || (!projectName && !newProjectName)) {
-      toast.error("Please fill Activity Details")
-      return
+      toast.error("Please fill Activity Details");
+      return;
     }
+
     const data = {
-      activityName: activityName,
+      activityName,
       projectName: newProjectName,
       activityDuration: 0,
       expectedTime: 90,
       isTodo: true,
-    }
-    ////postActivity
+    };
 
     try {
-      console.log("am trying ")
       const result = await postActivity(data);
       toast.success(result.status === "Success" ? "Activity added successfully." : result.status);
-      // if (result.status == "Success") {
-      //   // handleControll();
-      //   clearInterval(intervalId);
-      //   setActivityName('');
-      //   setIsRunning(false);
-      //   setDuration(0)
-      // }
     } catch (err) {
       toast.error(err.message || "Failed to save activity.");
     }
-  }
+  };
 
-  useEffect(() => {
-
-    // handleSave()
-  }, [])
   return (
-    <div className="bg-gray-200 rounded-md p-8 md:p-12 h-full">
-      <div className='fixed bottom-6 right-6 md:right-15 md:bottom-15 text-3xl p-5 py-4 bg-amber-300 rounded-full font-extrabold' style={{ zIndex: "100" }}>
-        <i className="fa fa-plus " aria-hidden="true"></i>
-      </div>
-      <h1 className='text-3xl font-bold' > Todo </h1>
-      <div className='p-4 bg-white  rounded-xl mt-4'>
-        <table className='w-full m-4   '>
-          <thead className='mb-10 bg-gray-200 text-xl font-medium'>
-            <th>HeadOne</th>
-            <th>HeadTwo</th>
-            <th>HeadThree</th>
-            <th>HeadFour</th>
-            <th>HeadFive</th>
-          </thead>
-          <tbody className='text-center'>
-            <tr>
-              <td>HeadOne</td>
-              <td>HeadTwo</td>
-              <td>HeadThree</td>
-              <td>HeadFour</td>
-              <td>HeadFive</td>
-            </tr>
-            <tr>
-              <td>HeadOne</td>
-              <td>HeadTwo</td>
-              <td>HeadThree</td>
-              <td>HeadFour</td>
-              <td>HeadFive</td>
-            </tr>  <tr>
-              <td>HeadOne</td>
-              <td>HeadTwo</td>
-              <td>HeadThree</td>
-              <td>HeadFour</td>
-              <td>HeadFive</td>
-            </tr>  <tr>
-              <td>HeadOne</td>
-              <td>HeadTwo</td>
-              <td>HeadThree</td>
-              <td>HeadFour</td>
-              <td>HeadFive</td>
-            </tr>  <tr>
-              <td>HeadOne</td>
-              <td>HeadTwo</td>
-              <td>HeadThree</td>
-              <td>HeadFour</td>
-              <td>HeadFive</td>
-            </tr>  <tr>
-              <td>HeadOne</td>
-              <td>HeadTwo</td>
-              <td>HeadThree</td>
-              <td>HeadFour</td>
-              <td>HeadFive</td>
-            </tr>
-          </tbody>
-        </table>
+    <div className="min-h-screen bg-gray-100 px-6 py-10">
+      <div className="max-w-6xl mx-auto bg-white rounded-xl shadow-md p-6 md:p-10">
+        <div className="flex items-center justify-between mb-6">
+          <h1 className="text-3xl font-bold text-gray-800">To-Do List</h1>
+          <button
+            onClick={handleSave}
+            className="flex items-center justify-center w-12 h-12 rounded-full bg-amber-400 hover:bg-amber-500 transition duration-200 text-white text-xl shadow-lg"
+            title="Add Activity"
+          >
+            <i className="fa fa-plus" aria-hidden="true"></i>
+          </button>
+        </div>
+
+        <div className="overflow-x-auto">
+          <table className="min-w-full table-auto border border-gray-200">
+            <thead className="bg-gray-100 text-gray-700 uppercase text-sm leading-normal">
+              <tr>
+                <th className="py-3 px-6 text-left">Task</th>
+                <th className="py-3 px-6 text-left">Project</th>
+                <th className="py-3 px-6 text-left">Status</th>
+                <th className="py-3 px-6 text-left">Expected Time</th>
+                <th className="py-3 px-6 text-left">Actions</th>
+              </tr>
+            </thead>
+            <tbody className="text-gray-600 text-sm font-light">
+              {[...Array(6)].map((_, idx) => (
+                <tr key={idx} className="border-b border-gray-200 hover:bg-gray-50">
+                  <td className="py-3 px-6">HeadOne</td>
+                  <td className="py-3 px-6">HeadTwo</td>
+                  <td className="py-3 px-6">HeadThree</td>
+                  <td className="py-3 px-6">HeadFour</td>
+                  <td className="py-3 px-6">
+                    <button className="text-blue-500 hover:text-blue-700">Edit</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Todo
+export default Todo;
