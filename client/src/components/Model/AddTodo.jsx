@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useStateContext } from '../../context/ContextProvider'
 import { toast } from "react-toastify";
 import { postActivity, getRecentActivity, updateTodo } from '../../api/apiServices';
 import { userStore } from '../../store/userStore';
 import useProjectStore from '../../store/projectTimer';
 
-const AddTodo = () => {
+const AddTodo = ({ createTodo, setCreateTodo }) => {
     const projectsData = userStore((state) => state.projects)
 
     const { isShowing, setIsShowing, isCreatingProject, setIsCreatingProject, isRunning,
@@ -22,7 +22,37 @@ const AddTodo = () => {
         projectId
     } = useProjectStore();
 
-    const handleSave = () => { }
+
+    const handleSave = async () => {
+        if (!activityName || (!projectName && !newProjectName)) {
+            toast.error("Please fill Activity Details");
+            return;
+        }
+
+        const data = {
+            activityName,
+            projectName: newProjectName,
+            activityDuration: 0,
+            expectedTime: 600,
+            isTodo: true,
+        };
+
+        try {
+            const result = await postActivity(data);
+            toast.success(result.status === "Success" ? "Activity added successfully." : result.status);
+            if (result.status == "Success") {
+
+            }
+
+        } catch (err) {
+            toast.error(err.message || "Failed to save activity.");
+        }
+    };
+    useEffect(() => {
+        setNewProjectName('')
+        setActivityName('')
+        setProjectName('')
+    }, [])
     return (
         <div className="flex flex-col shadow-md p-6 py-10  fixed inset-0  max-w-md max-h-fit mx-auto mt-8 ">
             <div className=' bg-gray-300 p-6 rounded-2xl  flex flex-col justify-around space-y-6'>
@@ -68,9 +98,22 @@ const AddTodo = () => {
                     </div>
                 </div>
 
+                <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Estimated Time</label>
+                    <input
+                        type="Text"
+                        
+                        placeholder="Time"
+                        className="w-full p-3 border rounded-lg focus:outline-none focus:ring- focus:ring-amber-300"
+                        value={'00:10:00'}
+                        // onChange={(e) => { setActivityName(e.target.value) }}
+                    />
+                </div>
+
+
                 {/* Action Buttons */}
                 <div className="flex justify-end gap-3">
-                    <button className="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-700">
+                    <button className="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-700" onClick={() => { setCreateTodo(!createTodo) }}>
                         Discard
                     </button>
                     <button className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white" onClick={handleSave} >

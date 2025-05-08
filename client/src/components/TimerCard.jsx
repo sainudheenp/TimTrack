@@ -49,7 +49,7 @@ const TimerCard = () => {
 
         try {
             const result = projectId
-                ? await updateTodo({...data,_id:projectId})
+                ? await updateTodo({ ...data, _id: projectId })
                 : await postActivity(data);
             toast.success(result.status === "Success" ? "Activity added successfully." : result.status);
             if (result.status == "Success") {
@@ -77,7 +77,7 @@ const TimerCard = () => {
             }
         }
     }, [intervalId])
-
+   
     return (
         <div className="bg-white rounded-2xl shadow-md p-6 w-full max-w-md mx-auto mt-8 space-y-6">
 
