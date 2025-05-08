@@ -8,10 +8,11 @@ import { useQuery } from '@tanstack/react-query';
 import formatTime from '../../utils/formatTime';
 import useProjectStore from '../../store/projectTimer';
 import { useStateContext } from '../../context/ContextProvider'
+import AddTodo from '../../components/Model/AddTodo';
 
 const Todo = () => {
   const [isShowing, setIsShowing] = useState(false)
-
+  const [createTodo, setCreateTodo] = useState('')
   const {
     activityName,
     projectName,
@@ -74,12 +75,13 @@ const Todo = () => {
     <div className="min-h-screen bg-gray-100 px-6 py-10">
       {isShowing && <TimerCard />}
       {/* <Openmodel/> */}
+      {createTodo && <AddTodo />}
       <div className="max-w-6xl mt-10 mx-auto bg-white rounded-xl shadow-md p-6 md:p-10">
 
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-3xl font-bold text-gray-800">To-Do List</h1>
           <button
-            // onClick={}
+            onClick={()=>setCreateTodo(!createTodo)}
             className="flex items-center justify-center w-12 h-12 rounded-full bg-amber-400 hover:bg-amber-500 transition duration-200 text-white text-xl shadow-lg"
             title="Add Activity"
           >
