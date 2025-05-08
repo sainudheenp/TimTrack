@@ -101,7 +101,7 @@ exports.getRoomDatas = catchAsync(
                 uid: user.uid,
                 totalHours: stats.totalHours || 0,
                 todaysHours: stats.todayHours || 0,
-                numberOfProj: stats.projects.length
+                numberOfProj: stats.projects?.length || 0
             }
         })
 

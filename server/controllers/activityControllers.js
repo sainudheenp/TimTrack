@@ -4,7 +4,7 @@ const catchAsync = require('../utils/catchAsync')
 
 
 // exports.getAllActivity = factory.getAll(Activity,{isTodo:false})
-exports.getAllActivity = factory.getAll(Activity,{})
+exports.getAllActivity = factory.getAll(Activity, {})
 
 exports.createActivity = catchAsync(async (req, res, next) => {
     const newActivity = await Activity.create({
@@ -134,7 +134,8 @@ exports.getAnalysis = catchAsync(
                 {
                     $group: {
                         _id: { $dateToString: { format: "%Y-%m-%d", date: "$createdAt" } },
-                        projects: { $addToSet: "$projectName" },
+                        // projects: { $addToSet: "$projectName" }   ,
+                        projects: { $push: { ProjectName: "$projectName", duration: "$activityDuration" } },
                         projectDuration: { $sum: "$activityDuration" },
 
 
