@@ -1,14 +1,29 @@
 import { React, useEffect, useState } from 'react'
 import { useStateContext } from '../context/ContextProvider'
 import { toast } from "react-toastify";
-import { postActivity, getRecentActivity } from '../api/apiServices';
+import { postActivity, getRecentActivity, updateTodo } from '../api/apiServices';
 import { userStore } from '../store/userStore';
+import useProjectStore from '../store/projectTimer';
+
+
 const TimerCard = () => {
     const projectsData = userStore((state) => state.projects)
-    console.log("TimeCard render",projectsData)
+    console.log("TimeCard render", projectsData)
 
     const { isShowing, setIsShowing, isCreatingProject, setIsCreatingProject, isRunning,
         setIsRunning, duration, handleControll, intervalId, setDuration } = useStateContext()
+
+    const {
+        activityName,
+        projectName,
+        newProjectName,
+        setActivityName,
+        setProjectName,
+        setNewProjectName,
+        setProjectId,
+        projectId
+    } = useProjectStore();
+
 
     const hours = Math.floor(duration / 3600)
     const minutes = Math.floor((duration % 3600) / 60)
@@ -16,9 +31,9 @@ const TimerCard = () => {
 
     const displayTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
 
-    const [activityName, setActivityName] = useState('')
-    const [projectName, setProjectName] = useState('')
-    const [newProjectName, setNewProjectName] = useState('')
+    // const [activityName, setActivityName] = useState('')
+    // const [projectName, setProjectName] = useState('')
+    // const [newProjectName, setNewProjectName] = useState('')
 
     const handleSave = async () => {
         if (!activityName || (!projectName && !newProjectName)) {
@@ -33,7 +48,9 @@ const TimerCard = () => {
         ////postActivity
 
         try {
-            const result = await postActivity(data);
+            const result = projectId
+                ? await updateTodo({...data,_id:projectId})
+                : await postActivity(data);
             toast.success(result.status === "Success" ? "Activity added successfully." : result.status);
             if (result.status == "Success") {
                 // handleControll();
@@ -66,7 +83,7 @@ const TimerCard = () => {
 
             <div className="text-center">
                 <h2 className="text-5xl font-bold text-gray-800 font-mono">{displayTime}</h2>
-                <button className="text-sm mt-2 cursor-pointer mt-8 w-20 h-10 bg-gray-400  text-lg text-black rounded-sm font-semibold"
+                <button className="text-sm mt-2 cursor-pointer w-20 h-10 bg-gray-400  text-black rounded-sm font-semibold"
                     onClick={() => { handleControll() }}>{isRunning ? "Stop" : "Start"}                     {isRunning ? <i className="fa-solid fa-pause "></i> : <i className="fa-solid fa-play "></i>}                </button>
             </div>
 
@@ -86,9 +103,10 @@ const TimerCard = () => {
                 <label className="block text-sm font-medium text-gray-700 mb-1">Project</label>
                 <div className="flex gap-2">
                     {!isCreatingProject ? (
-                        <select className="flex-1 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" onChange={(e) => setProjectName(e.target.value)}>
-                            <option value="">Select Project</option>
-                            {projectsData.map((item)=>(<option value={item._id}>{item._id}</option>))}
+                        <select className="flex-1 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            onChange={(e) => setProjectName(e.target.value)} value={projectName} >
+                            {projectName ? (<option value={projectName}>{projectName}</option>) : (<option value="">Select Project</option>)}
+                            {projectsData.map((item) => (<option value={item._id}>{item._id}</option>))}
                             <option value="test">test</option>
                         </select>
                     ) : (

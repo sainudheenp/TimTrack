@@ -14,7 +14,7 @@ exports.createOne = (Model) => {
     })
 }
 
-exports.getAll = (Model, cus = { }) => {
+exports.getAll = (Model, cus = {}) => {
     return catchAsync(async (req, res, next) => {
         const doc = await Model.find({ userId: req.user.uid, ...cus }).sort({ updatedAt: -1 })
 
@@ -28,3 +28,25 @@ exports.getAll = (Model, cus = { }) => {
 
     })
 }
+
+exports.updateOne = (Model) => {
+    return catchAsync(async (req, res, next) => {
+        const doc = await Model.findByIdAndUpdate(
+            req.body._id, { ...req.body }
+        )
+
+        if (!doc) {
+            return res.status(404).json({
+                status: 'fail',
+                message: 'Document not found',
+            });
+        }
+
+        res.status(200).json({
+            status: 'success',
+            data: {
+                data: doc,
+            },
+        });
+    });
+};

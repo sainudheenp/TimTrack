@@ -168,3 +168,5 @@ exports.getAnalysis = catchAsync(
 
 //get all todo
 exports.getTodos = factory.getAll(Activity, { isTodo: true })
+
+exports.updateTodo = factory.updateOne(Activity)

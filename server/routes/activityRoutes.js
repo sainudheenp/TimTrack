@@ -14,6 +14,7 @@ router.route("/weekStatus/")
 router.route("/todo")
     .get(validateToken, activityController.getTodos)
     .post(validateToken, activityController.createActivity)
+    .put(validateToken, activityController.updateTodo)
 
 
 module.exports = router

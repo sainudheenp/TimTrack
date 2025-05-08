@@ -7,7 +7,7 @@ export const getUserProfile = () => apiClient.get('/api/v1/user')
 
 //Activity
 export const getRecentActivity = () => apiClient.get('/api/v1/activity')
-
+//create activity and todo
 export const postActivity = (data) => apiClient.post('/api/v1/activity', data)
 
 //weekly
@@ -17,4 +17,9 @@ export const getDasboardData = () => apiClient.get("/api/v1/dashboard")
 
 export const getAnalysisData = () => apiClient.get("/api/v1/analysis")
 
-export const joinRoom = (data) => apiClient.post("/api/v1/room",data) 
+export const joinRoom = (data) => apiClient.post("/api/v1/room", data)
+
+//get todo
+export const getTodos = () => apiClient.get('/api/v1/activity/todo')
+
+export const updateTodo = (data) => apiClient.put('/api/v1/activity/todo', data)
