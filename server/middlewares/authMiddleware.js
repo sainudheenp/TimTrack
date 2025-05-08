@@ -1,5 +1,6 @@
 const { auth } = require('../config/firebase')
 const User = require('../models/userModel')
+const Room = require('../models/roomModel')
 
 const validateToken = async (req, res, next) => {
 
@@ -33,6 +34,10 @@ const validateToken = async (req, res, next) => {
                 displayName: name,
                 photoURL: picture
             });
+            await Room.updateOne(
+                { roomId: "Room1" },
+                { $addToSet: { users: req.user.uid } }
+            );
         }
         next()
 

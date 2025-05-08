@@ -6,6 +6,7 @@ const router = express.Router()
 
 
 router.route('/')
-            .post(validateToken,roomController.createRoom)
+    .post(validateToken, roomController.createRoom)
+    .get(validateToken, roomController.getRoomDatas)
 
 module.exports = router

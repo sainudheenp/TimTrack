@@ -8,7 +8,9 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Openmodel from '../../components/Model/Openmodel';
-
+import { useQuery } from '@tanstack/react-query';
+import { getRoomData } from '../../api/apiServices';
+import formatTime from '../../utils/formatTime';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -41,15 +43,6 @@ const rows = [
   createData('Eclair', 262, 16.0, 24, 6.0),
   createData('Cupcake', 305, 3.7, 67, 4.3),
   createData('Gingerbread', 356, 16.0, 49, 3.9),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9), createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
 
@@ -57,6 +50,16 @@ const rows = [
 
 
 const Team = () => {
+
+
+  const { data: RoomData, isLoading, isError } = useQuery({
+    queryKey: 'RoomData',
+    queryFn: getRoomData,
+    select: (res) => res.users
+  })
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error loading todos</div>;
+  console.log("ROOM data :", RoomData)
   return (
     <div className="bg-gray-200 rounded-md p-8 md:p-12 h-full">
 
@@ -74,23 +77,23 @@ const Team = () => {
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
               <TableRow>
-                <StyledTableCell>Name</StyledTableCell>
-                <StyledTableCell align="right">Email</StyledTableCell>
-                <StyledTableCell align="right">Todays Active Hours</StyledTableCell>
-                <StyledTableCell align="right">Total Active Hours </StyledTableCell>
-                <StyledTableCell align="right">No Of Projects</StyledTableCell>
+                <StyledTableCell >Name</StyledTableCell>
+                <StyledTableCell >Email</StyledTableCell>
+                <StyledTableCell align="center" >Todays Active Hours</StyledTableCell>
+                <StyledTableCell align="center" >Total Active Hours </StyledTableCell>
+                <StyledTableCell align="center" >No Of Projects</StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row) => (
+              {RoomData.map((row) => (
                 <StyledTableRow key={row.name}>
                   <StyledTableCell component="th" scope="row">
                     {row.name}
                   </StyledTableCell>
-                  <StyledTableCell align="right">{row.calories}</StyledTableCell>
-                  <StyledTableCell align="right">{row.fat}</StyledTableCell>
-                  <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-                  <StyledTableCell align="right">{row.protein}</StyledTableCell>
+                  <StyledTableCell >{row.email}</StyledTableCell>
+                  <StyledTableCell align="center">{formatTime(row.todaysHours)}</StyledTableCell>
+                  <StyledTableCell align="center">{formatTime(row.totalHours)}</StyledTableCell>
+                  <StyledTableCell align="center">{row.numberOfProj}</StyledTableCell>
                 </StyledTableRow>
               ))}
             </TableBody>

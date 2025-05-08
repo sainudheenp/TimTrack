@@ -17,9 +17,13 @@ export const getDasboardData = () => apiClient.get("/api/v1/dashboard")
 
 export const getAnalysisData = () => apiClient.get("/api/v1/analysis")
 
+// ROOM
 export const joinRoom = (data) => apiClient.post("/api/v1/room", data)
 
-//get todo
+export const getRoomData = () => apiClient.get("/api/v1/room")
+
+// TODO
 export const getTodos = () => apiClient.get('/api/v1/activity/todo')
 
 export const updateTodo = (data) => apiClient.put('/api/v1/activity/todo', data)
+

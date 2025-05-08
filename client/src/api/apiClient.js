@@ -2,16 +2,16 @@ const API_BASE = import.meta.env.VITE_API_URL;
 import { auth } from '../services/firebase'
 const getToken = async () => {
     const user = auth.currentUser;
-    console.log("TOKEN NEW USER",user)
+    // console.log("TOKEN NEW USER",user)
 
     if (!user) return null
     try {
         const token = await user.getIdToken(true)
         localStorage.setItem('token', token);
-        console.log("TOKEN NEWWWWW",token)
+        // console.log("TOKEN NEWWWWW",token)
         return token
     } catch (error) {
-        console.log("TOKEN FAILED")
+        // console.log("TOKEN FAILED")
 
         console.error("Failed to get token", error);
         return null;
