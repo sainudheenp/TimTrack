@@ -73,7 +73,7 @@ const Todo = () => {
   console.log(todos)
   return (
     <div className="min-h-screen bg-gray-100 px-6 py-10">
-      {isShowing && <TimerCard />}
+      {isShowing && <TimerCard isShowing={isShowing} setIsShowing={setIsShowing} />}
       {/* <Openmodel/> */}
       {createTodo && <AddTodo createTodo={createTodo} setCreateTodo={setCreateTodo} />}
       <div className="max-w-6xl mt-10 mx-auto bg-white rounded-xl shadow-md p-6 md:p-10">

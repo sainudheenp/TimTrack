@@ -6,11 +6,11 @@ import { userStore } from '../store/userStore';
 import useProjectStore from '../store/projectTimer';
 
 
-const TimerCard = () => {
+const TimerCard = ({ isShowing, setIsShowing }) => {
     const projectsData = userStore((state) => state.projects)
     console.log("TimeCard render", projectsData)
 
-    const { isShowing, setIsShowing, isCreatingProject, setIsCreatingProject, isRunning,
+    const {  isCreatingProject, setIsCreatingProject, isRunning,
         setIsRunning, duration, handleControll, intervalId, setDuration } = useStateContext()
 
     const {
@@ -55,9 +55,9 @@ const TimerCard = () => {
             if (result.status == "Success") {
                 // handleControll();
                 clearInterval(intervalId);
-                setActivityName('');
-                setIsRunning(false);
-                setDuration(0)
+                // setActivityName('');
+                // setIsRunning(false);
+                // setDuration(0)
             }
         } catch (err) {
             toast.error(err.message || "Failed to save activity.");
@@ -77,7 +77,7 @@ const TimerCard = () => {
             }
         }
     }, [intervalId])
-   
+
     return (
         <div className="bg-white rounded-2xl shadow-md p-6 w-full max-w-md mx-auto mt-8 space-y-6">
 
@@ -128,7 +128,7 @@ const TimerCard = () => {
 
             {/* Action Buttons */}
             <div className="flex justify-end gap-3">
-                <button className="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-700">
+                <button className="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-700" onClick={() => { setIsShowing(!isShowing) }}>
                     Discard
                 </button>
                 <button className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white" onClick={handleSave} >
