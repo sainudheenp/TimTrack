@@ -2,7 +2,7 @@ import { React, useEffect } from 'react'
 import formatTime from '../../utils/formatTime';
 const TotalCard = ({ actCount, actName }) => {
     return (
-        <div className='flex flex-row  md:flex-col items-center justify-center w-full h-35   m-3 md:m-0 bg-white rounded-2xl  '>
+        <div className='flex flex-col items-center justify-center w-full h-35   m-3 md:m-0 bg-white rounded-2xl  '>
             <h2 className='text-3xl font-extrabold mb-2'>{actCount}</h2>
             <div className='text-2xl font-medium' >{actName}</div>
         </div>

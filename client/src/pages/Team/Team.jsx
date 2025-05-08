@@ -53,7 +53,7 @@ const Team = () => {
 
 
   const { data: RoomData, isLoading, isError } = useQuery({
-    queryKey: 'RoomData',
+    queryKey: ['RoomData'],
     queryFn: getRoomData,
     select: (res) => res.users
   })
