@@ -43,7 +43,7 @@ exports.updateOne = (Model) => {
         }
 
         res.status(200).json({
-            status: 'success',
+            status: 'Success',
             data: {
                 data: doc,
             },
