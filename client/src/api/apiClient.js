@@ -1,12 +1,29 @@
 const API_BASE = import.meta.env.VITE_API_URL;
+import { auth } from '../services/firebase'
+const getToken = async () => {
+    const user = auth.currentUser;
+    console.log("TOKEN NEW USER",user)
 
-const getToken = () => localStorage.getItem('token')
+    if (!user) return null
+    try {
+        const token = await user.getIdToken(true)
+        localStorage.setItem('token', token);
+        console.log("TOKEN NEWWWWW",token)
+        return token
+    } catch (error) {
+        console.log("TOKEN FAILED")
+
+        console.error("Failed to get token", error);
+        return null;
+    }
+    // localStorage.getItem('token')
+}
 
 const request = async (method, endpoint, data = null) => {
     const headers = {
         'Content-Type': 'application/json',
     }
-    const token = getToken();
+    const token = await getToken();
     if (token) {
         headers['Authorization'] = `Bearer ${token}`;
     }
@@ -24,7 +41,7 @@ const request = async (method, endpoint, data = null) => {
 
     if (!response.ok) {
         const err = await response.json()
-        console.log("API Error",err)
+        console.log("API Error", err)
         throw new Error("API Error")
     }
 
@@ -33,7 +50,7 @@ const request = async (method, endpoint, data = null) => {
 
 export const apiClient = {
     get: (endpoint) => request('GET', endpoint),
-    post: (endpoint,data) => request('POST', endpoint, data),
-    put: (endpoint,data) => request('PUT', endpoint, data),
+    post: (endpoint, data) => request('POST', endpoint, data),
+    put: (endpoint, data) => request('PUT', endpoint, data),
     delete: (endpoint) => request('DELETE', endpoint)
 }
