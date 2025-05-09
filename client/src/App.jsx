@@ -15,12 +15,11 @@ import AuthLayout from "./Layouts/AuthLayout";
 import MainLayout from "./Layouts/MainLayout";
 import Analysis from "./pages/Analysis/Analysis";
 import Team from "./pages/Team/Team";
-
+import ProtectedRoute from "./components/ProtectedRoute";
 
 import { ToastContainer } from "react-toastify";
 
 function App() {
-  const [count, setCount] = useState(0);
   const { activeMenu } = useStateContext()
   return (
     <div >
@@ -31,16 +30,16 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
           </Route>
+
+
           {/* Page Routes */}
-
-          <Route element={<MainLayout />}>
-
+          <Route element={<ProtectedRoute>
+            <MainLayout />
+          </ProtectedRoute>}>
             <Route path="/" element={<Dashboard />} />
-            {/* <Route path="/timesheet" element={<Timesheet />} /> */}
             <Route path="/todo" element={<Todo />} />
             <Route path="/analysis" element={<Analysis />} />
             <Route path="/team" element={<Team />} />
-
           </Route>
         </Routes>
       </Router>

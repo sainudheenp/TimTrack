@@ -125,7 +125,7 @@ const StackChart = ({ ChartData }) => {
   return (
     <div className="h-auto mb-10 ">
 
-      <div className='h-70   md:100 flex flex-col md:flex-row '>
+      <div className='h-70   md:h-100 flex flex-col md:flex-row '>
 
 
         <div className='w-full   md:w-[75%] h-[100%]'>
