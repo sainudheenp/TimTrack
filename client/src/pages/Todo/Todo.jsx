@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { postActivity } from '../../api/apiServices';
 import TimerCard from '../../components/TimerCard';
@@ -30,33 +30,6 @@ const Todo = () => {
     select: (res) => res.data,
   });
 
-  // const [activityName, setActivityName] = useState('sarala');
-  // const [projectName, setProjectName] = useState('');
-  // const [newProjectName, setNewProjectName] = useState('heysaru');
-  // const [expectedTime] = useState(10);
-
-  // const handleSave = async () => {
-  //   if (!activityName || (!projectName && !newProjectName)) {
-  //     toast.error("Please fill Activity Details");
-  //     return;
-  //   }
-
-  //   const data = {
-  //     activityName,
-  //     projectName: newProjectName,
-  //     activityDuration: 0,
-  //     expectedTime: 90,
-  //     isTodo: true,
-  //   };
-
-  //   try {
-  //     const result = await postActivity(data);
-  //     toast.success(result.status === "Success" ? "Activity added successfully." : result.status);
-  //   } catch (err) {
-  //     toast.error(err.message || "Failed to save activity.");
-  //   }
-  // };
-
   const handleTimer = (s) => {
     console.log('fslf', s)
     setActivityName(s.activityName)
@@ -66,6 +39,13 @@ const Todo = () => {
     setDuration(s.activityDuration)
     setIsShowing(!isShowing)
   }
+  useEffect(() => {
+    return () => {
+      setActivityName('');
+      setProjectName('')
+      setDuration('')
+    }
+  }, [])
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error loading todos</div>;

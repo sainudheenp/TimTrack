@@ -38,7 +38,7 @@ const MainLayout = () => {
         });
 
         return () => unsubscribe();
-    }, []);
+    },[]);
 
 
     return (

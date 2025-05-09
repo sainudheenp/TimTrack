@@ -10,7 +10,7 @@ const TimerCard = ({ isShowing, setIsShowing }) => {
     const projectsData = userStore((state) => state.projects)
     console.log("TimeCard render", projectsData)
 
-    const {  isCreatingProject, setIsCreatingProject, isRunning,
+    const { isCreatingProject, setIsCreatingProject, isRunning,
         setIsRunning, duration, handleControll, intervalId, setDuration } = useStateContext()
 
     const {
@@ -55,7 +55,8 @@ const TimerCard = ({ isShowing, setIsShowing }) => {
             if (result.status == "Success") {
                 // handleControll();
                 clearInterval(intervalId);
-                // setActivityName('');
+                setActivityName('');
+                setProjectName('')
                 // setIsRunning(false);
                 // setDuration(0)
             }
