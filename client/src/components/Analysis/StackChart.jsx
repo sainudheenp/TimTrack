@@ -12,6 +12,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import formatTime from '../../utils/formatTime';
+import barGen from '../../utils/barGen'
+
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -49,13 +51,11 @@ const rows = [
 
 
 const StackChart = ({ ChartData }) => {
-  const barData = ChartData.data.BarChart
+  const barData = barGen(ChartData.data.BarChart)
   const pieData = ChartData.data.PieChart
   console.log('data stat bar', barData)
 
-  const datedArray = []
-
-
+  console.log("Bar gen", barData)
 
 
 
@@ -113,7 +113,7 @@ const StackChart = ({ ChartData }) => {
     { name: 'Group D', value: 200 },
   ];
 
-  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', "red", "green"];
 
   const RADIAN = Math.PI / 180;
   const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
@@ -123,95 +123,80 @@ const StackChart = ({ ChartData }) => {
 
   }
   return (
-    <div className="h-auto">
+    <div className="h-auto mb-10 ">
 
-      <span className="text-xl font-semibold text-center text-gray-800 mb-4">Last 7 Days's Breakdown</span>
-      <div className='h-100 flex flex-col md:flex-row'>
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart
-            width={500}
-            height={300}
-            data={data}
-            margin={{
-              top: 20,
-              right: 30,
-              left: 20,
-              bottom: 5,
-            }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey="pv" stackId="a" fill="#8884d8" />
-            <Bar dataKey="uv" stackId="a" fill="#82ca9d" />
-            <Bar dataKey="a" stackId="a" fill="red" />
-            <Bar dataKey="b" stackId="a" fill="green" />
+      <div className='h-70   md:100 flex flex-col md:flex-row '>
 
-          </BarChart>
-        </ResponsiveContainer>
 
-        <ResponsiveContainer width="100%" height="100%">
-          {/* <span className='text-center items-center'>Todays Activities</span> */}
-          <span className="text-xl font-semibold text-center text-gray-800 mb-4">Today's Activity Breakdown</span>
+        <div className='w-full   md:w-[75%] h-[100%]'>
+          <ResponsiveContainer >
+            <span className="text-xl font-semibold text-center text-gray-800 ">Last 7 Days's Breakdown</span>
+            <BarChart
 
-          <PieChart width={400} height={400}>
-            <Pie
-              data={pieData}
-              cx="50%"
-              cy="50%"
-              labelLine={false}
-              label={renderCustomizedLabel}
-              outerRadius={80}
-              fill="#8884d8"
-              dataKey="actDuration"
-              nameKey="_id"
+              data={barData}
+              margin={{
+                top: 20,
+                right: 30,
+                left: 20,
+                bottom: 5,
+              }}
             >
-              {data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-              ))}
-            </Pie>
-            <Legend />
-            <CartesianGrid strokeDasharray="3 3" />
-            <Tooltip labelFormatter={(label) => `Activity: ${label}`} formatter={(value) => `${formatTime(value)} hrs`} />
+              {/* <CartesianGrid strokeDasharray="3 3" /> */}
+              <XAxis dataKey="date" />
 
-            {/* <Tooltip  /> */}
-          </PieChart>
-        </ResponsiveContainer>
+              <YAxis
+                axisLine={true}  
+                tickLine={false}  
+                tick={false}     
+              />          
+                  {/* <Tooltip /> */}
+              <Tooltip labelFormatter={(label) => `Activity: ${label}`} formatter={(value) => `${formatTime(value)} hrs`} />
 
+              <Legend  />
+              {Object.keys(barData[0] || {})
+                .filter(key => key !== 'date')
+                .map((project, index) => (
+                  <Bar
+                    key={project}
+                    dataKey={project}
+                    stackId="a"
+                    fill={COLORS[index % COLORS.length]}
+                  />
+                ))}
+            </BarChart>
+          </ResponsiveContainer>
+
+        </div>
+        <div className='w-full md:w-[25%] h-[100%]'>
+          <ResponsiveContainer >
+            {/* <span className='text-center items-center'>Todays Activities</span> */}
+            <span className="text-xl font-semibold text-center text-gray-800 mb-4">Today's Activity Breakdown</span>
+
+            <PieChart >
+              <Pie
+                data={pieData}
+                cx="50%"
+                cy="50%"
+                labelLine={false}
+                label={renderCustomizedLabel}
+                outerRadius={80}
+                fill="#8884d8"
+                dataKey="actDuration"
+                nameKey="_id"
+              >
+                {data.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                ))}
+              </Pie>
+              <Legend />
+              {/* <CartesianGrid strokeDasharray="3 3" /> */}
+              <Tooltip labelFormatter={(label) => `Activity: ${label}`} formatter={(value) => `${formatTime(value)} hrs`} />
+
+              {/* <Tooltip  /> */}
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
       </div>
-
-      {/* <div className='mt-20'>
-        <h2 className='text-2xl font-medium mb-7'>Recent activities :</h2>
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 700 }} aria-label="customized table">
-            <TableHead>
-              <TableRow>
-                <StyledTableCell>Dessert (100g serving)</StyledTableCell>
-                <StyledTableCell align="right">Calories</StyledTableCell>
-                <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
-                <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
-                <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows.map((row) => (
-                <StyledTableRow key={row.name}>
-                  <StyledTableCell component="th" scope="row">
-                    {row.name}
-                  </StyledTableCell>
-                  <StyledTableCell align="right">{row.calories}</StyledTableCell>
-                  <StyledTableCell align="right">{row.fat}</StyledTableCell>
-                  <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-                  <StyledTableCell align="right">{row.protein}</StyledTableCell>
-                </StyledTableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </div> */}
-
     </div>
   )
 }
