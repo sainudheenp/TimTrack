@@ -32,9 +32,6 @@ const Dashboard = () => {
   const user = userStore((state) => state.user);
   console.log("Zustand-user", user ? user : "no user");
 
-  // const { WeekAvg, TotalTime, ProjectsCount } = useWeeklyStats();
-  // const { data, isLoading, error } = useWeeklyStats();
-
 
   return <div className="bg-gray-200 rounded-md p-8 md:p-12">
     <div className="flex flex-col gap-5 justify-between md:flex-row md:gap-0 ">
@@ -49,44 +46,7 @@ const Dashboard = () => {
       </div>
     )}
 
-    {/* {isLoading ? (<div className="flex flex-col md:flex-row justify-between gap-6 mt-12 ">
-      <WeekCard
-        title="Daily Average "
-        progress={'Loading..'}
-        icon={<TbArrowsSplit2 className="rotate-90 text-5xl" />}
-      />
-      <WeekCard
-        title="Worked This Week"
-        progress={'Loading..'}
-        icon={<RxCounterClockwiseClock className="text-5xl" />}
-      />
-      <WeekCard
-        title="Projects Worked"
-        progress={'Loading..'}
-        icon={<FaRegFolder className="text-5xl" />}
-      />
-    </div>)
-      : error ? (
-        <div className="mt-12 text-center text-red-500">Error loading Weekly stats. Try again later.</div>
-      ) : data ? (<div className="flex flex-col md:flex-row justify-between gap-6 mt-12 ">
-        <WeekCard
-          title="Daily Average "
-          progress={data.WeekAvg}
-          icon={<TbArrowsSplit2 className="rotate-90 text-5xl" />}
-        />
-        <WeekCard
-          title="Worked This Week"
-          progress={data.TotalTime}
-          icon={<RxCounterClockwiseClock className="text-5xl" />}
-        />
-        <WeekCard
-          title="Projects Worked"
-          progress={data.ProjectsCount}
-          icon={<FaRegFolder className="text-5xl" />}
-        />
-      </div>) : null
-    } */}
-
+    
     <WeekCardContainer />
 
     <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">

@@ -1,4 +1,8 @@
 import React from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { getRoomData } from './../api/apiServices';
+import formatTime from './../utils/formatTime';
+
 
 const MembersTile = ({ UserName, Email, TodaysWork, WeeklyTIme }) => {
   return (
@@ -12,7 +16,7 @@ const MembersTile = ({ UserName, Email, TodaysWork, WeeklyTIme }) => {
         />
         <div>
           <h5 className="font-semibold text-lg">{UserName}</h5>
-          <p className="text-gray-500 text-sm">{Email}</p>
+          <p className="text-gray-500 text-sm truncate text-ellipsis">{Email}</p>
         </div>
       </div>
 
@@ -32,20 +36,26 @@ const MembersTile = ({ UserName, Email, TodaysWork, WeeklyTIme }) => {
 };
 
 const MembersCard = () => {
+  const { data: RoomData, isLoading, isError } = useQuery({
+    queryKey: ['RoomData'],
+    queryFn: getRoomData,
+    select: (res) => res.users.slice(0, 3)
+  })
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error loading todos</div>;
+  console.log("ROOM 3 data :", RoomData)
   return (
     <div className="p-4 bg-gray-100 rounded-md">
-      <MembersTile
-        UserName="John"
-        Email="John@gmail.com"
-        TodaysWork="00:20:00"
-        WeeklyTIme="40:00:00"
-      />
-      <MembersTile
-        UserName="Jane"
-        Email="Jane@gmail.com"
-        TodaysWork="02:10:00"
-        WeeklyTIme="38:00:00"
-      />
+      {RoomData.map((usr) => (
+        <MembersTile
+          UserName={usr.name}
+          Email={usr.email}
+          TodaysWork={formatTime(usr.todaysHours)}
+          WeeklyTIme={formatTime(usr.totalHours)}
+        />
+      ))}
+
+     
     </div>
   );
 };
