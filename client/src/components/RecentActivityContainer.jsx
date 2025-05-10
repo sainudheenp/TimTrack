@@ -28,7 +28,7 @@ const RecentActivity = () => {
     const data = dashboardData?.recentActivities;
 
     return (
-        <div className='grid grid-cols-3 gap-4 mt-4'>
+        <div className=' md:grid grid-cols-3 gap-4 mt-4'>
             {/* {activities.map((act, idx) => (<ImgTitleCard key={idx} ActivityName={act.activityName} />))} */}
 
             {isLoading ? (<div>Loading Recent Projects....</div>) : error ? (<div> Something Went Wrong! </div>)
