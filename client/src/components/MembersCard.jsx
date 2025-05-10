@@ -7,8 +7,7 @@ import formatTime from './../utils/formatTime';
 const MembersTile = ({ UserName, Email, TodaysWork, WeeklyTIme }) => {
   return (
     <div className="flex flex-col sm:flex-row justify-between items-center bg-white shadow-sm rounded p-4 mt-2">
-      {/* User Info */}
-      <div className="flex gap-3 items-center text-center sm:text-left w-full sm:w-auto">
+      <div className="flex gap-3 flex-col md:flex-row items-center text-center sm:text-left w-full sm:w-auto">
         <img
           className="w-12 h-12 rounded-full"
           src="https://cdn-icons-png.flaticon.com/512/4140/4140037.png"
@@ -16,11 +15,10 @@ const MembersTile = ({ UserName, Email, TodaysWork, WeeklyTIme }) => {
         />
         <div>
           <h5 className="font-semibold text-lg">{UserName}</h5>
-          <p className="text-gray-500 text-sm truncate text-ellipsis">{Email}</p>
+          <p className="text-gray-500 text-sm truncate  overflow-hidden">{Email}</p>
         </div>
       </div>
 
-      {/* Work Info */}
       <div className="grid grid-cols-2 gap-4 mt-3 sm:mt-0 text-center sm:text-right w-full sm:w-auto">
         <div>
           <p className="text-sm text-gray-500">Today's Work</p>
