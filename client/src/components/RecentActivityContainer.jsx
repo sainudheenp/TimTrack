@@ -13,7 +13,6 @@ let imgarray = [
     "https://img.freepik.com/free-photo/view-messy-office-workspace-with-personal-computer_23-2150282060.jpg"
 ]
 const ImgTitleCard = ({ ActivityName }) => {
-    // const img = imgarray[Math.floor(Math.random() * imgarray.length)]
     const img = useMemo(()=>imgarray[Math.floor(Math.random() * imgarray.length)],[])
     return (<div className=' overflow-hidden relative'>
         <img className=' rounded-xl h-26 w-55' src={img} alt="" />
@@ -22,8 +21,7 @@ const ImgTitleCard = ({ ActivityName }) => {
 }
 
 const RecentActivity = () => {
-    // const { activities } = setRecentActivites()
-    // const { data : recentActivities , isLoading, error } = useDashboardData()
+  
     const { data: dashboardData, isLoading, error } = useDashboardData();
     const data = dashboardData?.recentActivities;
 
