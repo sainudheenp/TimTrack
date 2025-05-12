@@ -31,7 +31,7 @@ const AddTodo = ({ createTodo, setCreateTodo }) => {
 
         const data = {
             activityName,
-            projectName: newProjectName,
+            projectName: projectName,
             activityDuration: 0,
             expectedTime: 600,
             isTodo: true,
