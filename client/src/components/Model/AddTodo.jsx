@@ -5,7 +5,7 @@ import { postActivity, getRecentActivity, updateTodo } from '../../api/apiServic
 import { userStore } from '../../store/userStore';
 import useProjectStore from '../../store/projectTimer';
 // import { useMutation, useQueryClient } from  "@tanstack/react-query" ;
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useMutation ,useQueryClient} from '@tanstack/react-query'
 
 const AddTodo = ({ createTodo, setCreateTodo }) => {
     const projectsData = userStore((state) => state.projects)
@@ -66,7 +66,7 @@ const AddTodo = ({ createTodo, setCreateTodo }) => {
         //     toast.error(err.message || "Failed to save activity.");
         // }
 
-        mutation.mutate(data);
+        mutation.mutate(data); 
 
     };
     useEffect(() => {
