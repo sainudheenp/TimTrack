@@ -51,7 +51,7 @@ const Openmodel = () => {
     return (
         <div>
             {!modal && (
-                <button onClick={toggleModal} className="btn-modal">
+                <button onClick={toggleModal} className="btn-modal cursor-pointer hover:font-medium">
                     Leave / Join Room
                 </button>
             )}

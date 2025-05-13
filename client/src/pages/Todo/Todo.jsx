@@ -29,6 +29,7 @@ const Todo = () => {
     queryFn: getTodos,
     select: (res) => res.data,
   });
+  
 
   const handleTimer = (s) => {
     console.log('fslf', s)
@@ -52,7 +53,7 @@ const Todo = () => {
 
   console.log(todos)
   return (
-    <div className="min-h-screen bg-gray-100 px-6 py-10">
+    <div className="min-h-screen bg-gray-200 px-6 py-10">
       {isShowing && <TimerCard isShowing={isShowing} setIsShowing={setIsShowing} />}
       {/* <Openmodel/> */}
       {createTodo && <AddTodo createTodo={createTodo} setCreateTodo={setCreateTodo} />}
@@ -88,11 +89,14 @@ const Todo = () => {
                   <td className="py-3 px-6">{_.projectName}</td>
                   <td className="py-3 px-6">{formatTime(_.activityDuration)}</td>
                   <td className="py-3 px-6">{formatTime(_.expectedTime)}</td>
-                  <td className="py-3 px-6">{_.isCompleted ? "✅ Completed" : '⏳ In Progress'}</td>
+                  <td className="py-3 px-6">{ _.activityDuration > _.expectedTime ? "✅ Completed" : '⏳ In Progress'}</td>
 
-                  <td className="py-3 px-6">
-                    <button className="text-blue-500 hover:text-blue-700" onClick={() => handleTimer(_)}>
+                  <td className="py-3 px-6 ">
+                    <button className="text-blue-500 p-3 hover:text-blue-900" onClick={() => handleTimer(_)}>
                       <i className="fa-solid fa-play "></i>
+                    </button>
+                     <button className=" hover:text-black ml-5 text-red-400" onClick={() => {}}>
+                      <i className="fa-solid fa-trash "></i>
                     </button>
                   </td>
                 </tr>
