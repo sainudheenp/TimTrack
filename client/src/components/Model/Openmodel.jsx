@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { joinRoom } from '../../api/apiServices'
 import { toast } from 'react-toastify'
 const API_BASE = import.meta.env.VITE_API_URL
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 const Openmodel = () => {
     const [modal, setModal] = useState(false)
@@ -12,25 +13,40 @@ const Openmodel = () => {
     const toggleModal = () => {
         setModal(!modal)
     }
+    const queryClient = useQueryClient();
 
-
-
-
-    const handleJoin = async () => {
-        const data = {
-            roomName: roomName,
-            roomId: roomId
+    const joinRoomMutation = useMutation({
+        mutationFn: async (data) => await joinRoom(data),
+        onSuccess: (result) => {
+            setModal(false);
+            queryClient.invalidateQueries(['RoomData']);
+            toast.success(result.status === 'success' ? 'Joined successfully.' : result.status);
+        },
+        onError: (error) => {
+            console.error("openModel error", error);
+            toast.error("Failed to join room.");
         }
-        try {
-            //  const result = await fetch(`${API_BASE}/api/v1/room`)
-            const result = await joinRoom(data);
-            setModal(!modal)
+    })
 
-            toast.success(result.status == "success" ? "Joined successfully." : result.status);
-        } catch (error) {
-            console.log("opoenModel", error)
-        }
+    const handleJoin = () => {
+        joinRoomMutation.mutate({ roomName, roomId })
     }
+
+    // const handleJoin = async () => {
+    //     const data = {
+    //         roomName: roomName,
+    //         roomId: roomId
+    //     }
+    //     try {
+    //         //  const result = await fetch(`${API_BASE}/api/v1/room`)
+    //         const result = await joinRoom(data);
+    //         setModal(!modal)
+
+    //         toast.success(result.status == "success" ? "Joined successfully." : result.status);
+    //     } catch (error) {
+    //         console.log("opoenModel", error)
+    //     }
+    // }
 
     return (
         <div>
