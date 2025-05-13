@@ -4,6 +4,8 @@ import { toast } from "react-toastify";
 import { postActivity, getRecentActivity, updateTodo } from '../../api/apiServices';
 import { userStore } from '../../store/userStore';
 import useProjectStore from '../../store/projectTimer';
+// import { useMutation, useQueryClient } from  "@tanstack/react-query" ;
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 const AddTodo = ({ createTodo, setCreateTodo }) => {
     const projectsData = userStore((state) => state.projects)
@@ -22,6 +24,22 @@ const AddTodo = ({ createTodo, setCreateTodo }) => {
         projectId
     } = useProjectStore();
 
+    const queryClient = useQueryClient();
+
+    const mutation = useMutation({
+        mutationFn: postActivity,
+        onSuccess: () => {
+            queryClient.invalidateQueries(['todos']);
+            toast.success("Activity added successfully.");
+            setNewProjectName('');
+            setActivityName('');
+            setProjectName('');
+            setCreateTodo(false);
+        },
+        onError: (err) => {
+            toast.error(err.message || "Failed to save activity.");
+        }
+    })
 
     const handleSave = async () => {
         if (!activityName || (!projectName && !newProjectName)) {
@@ -37,16 +55,19 @@ const AddTodo = ({ createTodo, setCreateTodo }) => {
             isTodo: true,
         };
 
-        try {
-            const result = await postActivity(data);
-            toast.success(result.status === "Success" ? "Activity added successfully." : result.status);
-            if (result.status == "Success") {
+        // try {
+        //     const result = await postActivity(data);
+        //     toast.success(result.status === "Success" ? "Activity added successfully." : result.status);
+        //     if (result.status == "Success") {
 
-            }
+        //     }
 
-        } catch (err) {
-            toast.error(err.message || "Failed to save activity.");
-        }
+        // } catch (err) {
+        //     toast.error(err.message || "Failed to save activity.");
+        // }
+
+        mutation.mutate(data);
+
     };
     useEffect(() => {
         setNewProjectName('')
@@ -102,11 +123,11 @@ const AddTodo = ({ createTodo, setCreateTodo }) => {
                     <label className="block text-sm font-medium text-gray-700 mb-1">Estimated Time</label>
                     <input
                         type="Text"
-                        
+
                         placeholder="Time"
                         className="w-full p-3 border rounded-lg focus:outline-none focus:ring- focus:ring-amber-300"
                         value={'00:10:00'}
-                        // onChange={(e) => { setActivityName(e.target.value) }}
+                    // onChange={(e) => { setActivityName(e.target.value) }}
                     />
                 </div>
 
