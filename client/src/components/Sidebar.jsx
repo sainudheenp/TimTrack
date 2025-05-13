@@ -48,10 +48,10 @@ const Sidebar = () => {
                     </div>
 
                     <div className='mt-10'>
-                        <SideNavLink name={"Dashboard"} icon={"fas fa-th-list"} path={'/'} />
-                        <SideNavLink name={"Analysis"} icon={"fa-solid fa-chart-simple"} path={'/analysis'} />
-                        <SideNavLink name={"Todo"} icon={"fas fa-tasks"} path={'/todo'} />
-                        <SideNavLink name={"Team"} icon={"fa-solid fa-user-group"} path={'/team'} />
+                        <SideNavLink name={"Dashboard"} icon={"fas fa-th-list"} path={'/'} onClick={handleSideBarClose} />
+                        <SideNavLink name={"Analysis"} icon={"fa-solid fa-chart-simple"} path={'/analysis'} onClick={handleSideBarClose}  />
+                        <SideNavLink name={"Todo"} icon={"fas fa-tasks"} path={'/todo'} onClick={handleSideBarClose}  />
+                        <SideNavLink name={"Team"} icon={"fa-solid fa-user-group"} path={'/team'} onClick={handleSideBarClose}  />
                     </div>
                 </>
             )}

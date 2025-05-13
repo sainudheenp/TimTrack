@@ -13,22 +13,22 @@ const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  console.log(email)
+
   const handleLogin = async () => {
     try {
       const userCred = await signInWithEmailAndPassword(auth, email, password);
       const token = await userCred.user.getIdToken();
+      localStorage.setItem("token", token);
       toast.success("Login Successful!");
 
-      localStorage.setItem("token", token);
 
       Cookies.set('token', token, {
         expires: 1,
       });
 
+      navigate("/");
       console.log("Sign in User:", userCred);
       console.log("UID :", userCred.user.uid);
-      navigate("/");
     } catch (error) {
       console.log(error);
       let message = "Something went wrong. Please try again.";
