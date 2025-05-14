@@ -1,5 +1,5 @@
 import { React, useEffect, useState, useMemo } from 'react'
-import setRecentActivites from '../hooks/useRecentFv'
+// import setRecentActivites from '../hooks/useRecentFv'
 import useDashboardData from '../hooks/useDashboard';
 
 let imgarray = [
@@ -30,7 +30,7 @@ const RecentActivity = () => {
             {/* {activities.map((act, idx) => (<ImgTitleCard key={idx} ActivityName={act.activityName} />))} */}
 
             {isLoading ? (<div>Loading Recent Projects....</div>) : error ? (<div> Something Went Wrong! </div>)
-                : data && data.length > 0 ? data.map((item, idx) => (item ? <ImgTitleCard key={idx} ActivityName={item.activityName} value={item.activityDuration / 15000 * 100} /> : null))
+                : data && data.length > 0 ? data.map((item, idx) => (item ? <ImgTitleCard key={idx} ActivityName={item.activityName} /> : null))
                     : (<div>No RecentActivittty found</div>)}
 
 

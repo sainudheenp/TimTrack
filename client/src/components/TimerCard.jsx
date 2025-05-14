@@ -8,7 +8,6 @@ import useProjectStore from '../store/projectTimer';
 
 const TimerCard = ({ isShowing, setIsShowing }) => {
     const projectsData = userStore((state) => state.projects)
-    console.log("TimeCard render", projectsData)
 
     const { isCreatingProject, setIsCreatingProject, isRunning,
         setIsRunning, duration, handleControll, intervalId, setDuration } = useStateContext()

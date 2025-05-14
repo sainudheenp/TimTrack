@@ -21,10 +21,10 @@ const TotalCardWr = ({ data }) => {
     // })
     return (
         <div className='flex  justify-evenly p-4 gap-8  bg-gray-200 mt-5 flex-col md:flex-row'>
-            <TotalCard actName={'Total Hours'} actCount={formatTime(overAll.totalHours)} />
+            <TotalCard actName={"Today"} actCount={today || "Not"} />
             <TotalCard actName={'Projects'} actCount={overAll.projects.length} />
             <TotalCard actName={'Activities'} actCount={overAll.TActivities} />
-            <TotalCard actName={"Today"} actCount={today || "Not"} />
+            <TotalCard actName={'Total Hours'} actCount={formatTime(overAll.totalHours)} />
         </div>
     )
 }

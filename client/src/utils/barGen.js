@@ -18,7 +18,7 @@ const barGen = (data) => {
       const dayData = data.find(entry => entry._id === dateStr);
       const dayProjects = {};
   
-      // Initialize all project keys with 0
+      // initialize all project keys with 0
       allProjects.forEach(proj => {
         dayProjects[proj] = 0;
       });

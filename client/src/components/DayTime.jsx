@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-const Day = () => {
+const DayTime = () => {
     const [today, setToday] = useState(new Date())
     // const today = new Date()
     // const shortName=(date,)=>{}
@@ -29,4 +29,4 @@ const Day = () => {
     )
 }
 
-export default Day
+export default DayTime
