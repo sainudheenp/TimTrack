@@ -5,7 +5,6 @@ const Room = require('../models/roomModel')
 const validateToken = async (req, res, next) => {
 
     try {
-        // const token = req.headers.authorization.split('Bearer ')[1] || req.cookies.token ;
         const token = req.headers.authorization?.startsWith('Bearer ')
             ? req.headers.authorization.split('Bearer ')[1]
             : req.cookies?.token;
@@ -17,8 +16,6 @@ const validateToken = async (req, res, next) => {
             return res.status(401).json({
                 success: false,
                 message: "Auth token missing",
-                redirect: '/login',
-
             })
         }
 
