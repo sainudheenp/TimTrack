@@ -3,8 +3,8 @@ import { ToastContainer } from "react-toastify";
 
 import { useStateContext } from "./context/ContextProvider";
 
-import AuthLayout from "./Layouts/AuthLayout";
-import MainLayout from "./Layouts/MainLayout";
+import AuthLayout from "./layouts/AuthLayout";
+import MainLayout from "./layouts/MainLayout";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 import Login from "./pages/Login/Login";

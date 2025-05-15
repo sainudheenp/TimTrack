@@ -54,7 +54,7 @@ const RecentActivities = () => {
     if (isLoading) {
         return <div>loading...</div>
     }
-    let activities = data.data.data;
+    let activities = data?.data?.data;
     console.log("data act all", data.data.data)
     // data.data.data.map((row)=>console.log(row.activityName))
     return (

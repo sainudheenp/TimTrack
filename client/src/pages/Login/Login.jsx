@@ -6,6 +6,7 @@ import SocialLogin from "../../components/SocialLogin";
 import InputField from "../../components/InputField";
 import { GoogleAuthProvider, GithubAuthProvider } from "firebase/auth";
 import Cookies from 'js-cookie';
+import { userStore } from '../../store/userStore'
 
 import { toast } from "react-toastify";
 
@@ -18,6 +19,8 @@ const Login = () => {
     try {
       const userCred = await signInWithEmailAndPassword(auth, email, password);
       const token = await userCred.user.getIdToken();
+      userStore.getState().setUser(userCred.user);
+
       localStorage.setItem("token", token);
       toast.success("Login Successful!");
 
