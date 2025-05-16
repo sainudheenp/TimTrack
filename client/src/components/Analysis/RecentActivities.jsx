@@ -68,7 +68,6 @@ const RecentActivities = () => {
                             <StyledTableCell align="right">Duration</StyledTableCell>
                             <StyledTableCell align="right">Project Name</StyledTableCell>
                             <StyledTableCell align="right">Time</StyledTableCell>
-                            {/* <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell> */}
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -82,8 +81,6 @@ const RecentActivities = () => {
                                 </StyledTableCell>
                                 <StyledTableCell align="right">{row.projectName}</StyledTableCell>
                                 <StyledTableCell align="right">{row.createdAt}</StyledTableCell>
-                                {/* <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-                                    <StyledTableCell align="right">{row.protein}</StyledTableCell> */}
                             </StyledTableRow>
                         ))}
                     </TableBody>

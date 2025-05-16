@@ -23,8 +23,7 @@ const SocialLogin = ({ text, img, provider }) => {
 
         navigate("/");
 
-        // setUser(user);
-        // setToken(token);
+        
         userStore.getState().setUser(user);
           userStore.getState().setToken(token);
       }
