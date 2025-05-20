@@ -50,3 +50,19 @@ exports.updateOne = (Model) => {
         });
     });
 };
+
+exports.DeleteOne = (Model) => {
+    return catchAsync(async (req, res, next) => {
+        console.log("SERVER HI")
+        // console.log(req.body)
+        // const doc = await Model.findByIdAndDelete(req.body._id)
+        const doc = await Model.findByIdAndDelete({ _id: req.body._id, userId: req.user.uid })
+        res.status(200).json({
+            status: 'Succces',
+            data: {
+                data: doc
+            }
+        })
+
+    })
+}

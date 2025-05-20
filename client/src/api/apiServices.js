@@ -27,3 +27,4 @@ export const getTodos = () => apiClient.get('/api/v1/activity/todo')
 
 export const updateTodo = (data) => apiClient.put('/api/v1/activity/todo', data)
 
+export const deleteTodo = (data) => apiClient.delete('/api/v1/activity/todo', data )

@@ -35,5 +35,5 @@ export const apiClient = {
     get: (endpoint) => request('GET', endpoint),
     post: (endpoint, data) => request('POST', endpoint, data),
     put: (endpoint, data) => request('PUT', endpoint, data),
-    delete: (endpoint) => request('DELETE', endpoint)
+    delete: (endpoint,data) => request('DELETE', endpoint,data)
 }

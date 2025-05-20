@@ -171,3 +171,5 @@ exports.getAnalysis = catchAsync(
 exports.getTodos = factory.getAll(Activity, { isTodo: true })
 
 exports.updateTodo = factory.updateOne(Activity)
+
+exports.deleteTodo = factory.DeleteOne(Activity)

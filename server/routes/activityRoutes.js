@@ -15,6 +15,7 @@ router.route("/todo")
     .get(validateToken, activityController.getTodos)
     .post(validateToken, activityController.createActivity)
     .put(validateToken, activityController.updateTodo)
+    .delete(validateToken, activityController.deleteTodo)
 
 
 module.exports = router
