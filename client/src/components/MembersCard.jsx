@@ -52,8 +52,6 @@ const MembersCard = () => {
           WeeklyTIme={formatTime(usr.totalHours)}
         />
       ))}
-
-     
     </div>
   );
 };

@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { useStateContext } from '../context/ContextProvider'
-// import { userStore } from .store/userStore'
 import { userStore } from '../store/userStore'
 import UserProfile from './UserProfile'
 
@@ -58,7 +57,7 @@ const Navbar = () => {
           {isClicked.userProfile && (<div className='absolute right-0 top-2 '>
             <UserProfile /> </div>)}
       </div>
-      {isClicked.notification && (<div className='w-4'>
+      {isClicked.notification && (<div className='w-4 absolute top-0 right-50'>
         Notifications
       </div>)}
 

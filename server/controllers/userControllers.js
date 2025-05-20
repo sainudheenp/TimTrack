@@ -7,7 +7,7 @@ exports.getMe = (req, res) => {
         }
         res.status(200).json({
             status: 'success',
-            user: wreq.user
+            user: req.user
         })
     } catch (error) {
         console.log("Get Me Error", error)

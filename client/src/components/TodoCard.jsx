@@ -15,9 +15,9 @@ const TodoCard = () => {
   console.log(todos)
   return (
     <div>
-      {todos.map((tod) => (
+      {todos.map((tod,idx) => (
 
-        <ProgressTile name={tod.activityName} time={formatTime(tod.activityDuration)} value={(tod.activityDuration * tod.expectedTime)/100} />
+        <ProgressTile name={tod.activityName} key={idx} time={formatTime(tod.activityDuration)} value={(tod.activityDuration * tod.expectedTime)/100} />
 
       ))}
        </div>

@@ -12,7 +12,6 @@ const DayTime = () => {
         hour12: true
     })}`
 
-    // console.log("Date :", today.getMonth() + 1)
     useEffect(() => {
         const timer = setInterval(() => {
             setToday(new Date());
