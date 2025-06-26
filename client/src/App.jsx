@@ -13,13 +13,16 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import Todo from "./pages/Todo/Todo";
 import Analysis from "./pages/Analysis/Analysis";
 import Team from "./pages/Team/Team";
-
+import Landing from "./pages/Landing/Landing";
 function App() {
-  const { activeMenu } = useStateContext(); 
-  
+  const { activeMenu } = useStateContext();
+
   return (
     <Router>
       <Routes>
+        
+        <Route path='/' element={<Landing />} />
+
         {/* Public Auth Routes */}
         <Route element={<AuthLayout />}>
           <Route path="/login" element={<Login />} />
@@ -34,7 +37,7 @@ function App() {
             </ProtectedRoute>
           }
         >
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/todo" element={<Todo />} />
           <Route path="/analysis" element={<Analysis />} />
           <Route path="/team" element={<Team />} />

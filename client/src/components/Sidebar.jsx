@@ -8,7 +8,7 @@ const Sidebar = () => {
 
     const handleSideBarClose = () => {
         if (activeMenu && screenSize <= 900) {
-            console.log("SCreen Sixe ,",screenSize,activeMenu)
+            console.log("SCreen Sixe ,", screenSize, activeMenu)
             setActiveMenu(false)
         }
     }
@@ -49,10 +49,10 @@ const Sidebar = () => {
                     </div>
 
                     <div className='mt-10'>
-                        <SideNavLink name={"Dashboard"} icon={"fas fa-th-list"} path={'/'} onClickd={handleSideBarClose} />
-                        <SideNavLink name={"Analysis"} icon={"fa-solid fa-chart-simple"} path={'/analysis'} onClickd={handleSideBarClose}  />
-                        <SideNavLink name={"Todo"} icon={"fas fa-tasks"} path={'/todo'} onClickd={handleSideBarClose}  />
-                        <SideNavLink name={"Team"} icon={"fa-solid fa-user-group"} path={'/team'} onClickd={handleSideBarClose}  />
+                        <SideNavLink name={"Dashboard"} icon={"fas fa-th-list"} path={'/dashboard'} onClickd={handleSideBarClose} />
+                        <SideNavLink name={"Analysis"} icon={"fa-solid fa-chart-simple"} path={'/analysis'} onClickd={handleSideBarClose} />
+                        <SideNavLink name={"Todo"} icon={"fas fa-tasks"} path={'/todo'} onClickd={handleSideBarClose} />
+                        <SideNavLink name={"Team"} icon={"fa-solid fa-user-group"} path={'/team'} onClickd={handleSideBarClose} />
                     </div>
                 </>
             )}

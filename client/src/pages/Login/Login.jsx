@@ -29,7 +29,7 @@ const Login = () => {
         expires: 1,
       });
 
-      navigate("/");
+      navigate("/dashboard");
       console.log("Sign in User:", userCred);
       console.log("UID :", userCred.user.uid);
     } catch (error) {

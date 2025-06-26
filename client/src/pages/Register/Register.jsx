@@ -22,7 +22,9 @@ const Register = () => {
       const token = await newUsr.user.getIdToken()
       localStorage.setItem('token', token)
       toast.success("Registered successfully!");
-      navigate('/')
+      // navigate('/')
+      navigate("/dashboard");
+
     } catch (error) {
       console.log(error)
       if (error.code == "auth/email-already-in-use") {

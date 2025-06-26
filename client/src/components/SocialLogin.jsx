@@ -21,7 +21,7 @@ const SocialLogin = ({ text, img, provider }) => {
         localStorage.setItem("token", token);
         localStorage.setItem('user',user)
 
-        navigate("/");
+        navigate("/dashboard");
 
         
         userStore.getState().setUser(user);
