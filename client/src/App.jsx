@@ -14,13 +14,14 @@ import Todo from "./pages/Todo/Todo";
 import Analysis from "./pages/Analysis/Analysis";
 import Team from "./pages/Team/Team";
 import Landing from "./pages/Landing/Landing";
+import NotFound from "./pages/NotFound";
 function App() {
   const { activeMenu } = useStateContext();
 
   return (
     <Router>
       <Routes>
-        
+
         <Route path='/' element={<Landing />} />
 
         {/* Public Auth Routes */}
@@ -41,6 +42,7 @@ function App() {
           <Route path="/todo" element={<Todo />} />
           <Route path="/analysis" element={<Analysis />} />
           <Route path="/team" element={<Team />} />
+          <Route path="/*" element={<NotFound />} />
         </Route>
       </Routes>
 
