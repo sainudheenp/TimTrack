@@ -12,7 +12,6 @@ const UserProfile = () => {
     try {
       await signOut(auth);
 
-      // Clear only relevant user data
       localStorage.removeItem('user');
       localStorage.removeItem('token');
 
@@ -21,7 +20,7 @@ const UserProfile = () => {
         autoClose: 3000,
       });
 
-      // Redirect to login or home page
+      // Redirect to login or he page
       navigate('/login');
     } catch (error) {
       console.error('Logout failed:', error);
