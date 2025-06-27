@@ -20,7 +20,6 @@ const UserProfile = () => {
         autoClose: 3000,
       });
 
-      // Redirect to login or he page
       navigate('/login');
     } catch (error) {
       console.error('Logout failed:', error);
